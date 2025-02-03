@@ -140,8 +140,87 @@ Then I used those numbers (including length of arm for L) to calculate the momen
 To derive $K_S$ I used the readings/schematic above.
 I took the total voltage difference over the total angle difference (converted to radians).
 \begin{align}
-    K_S&=(3.76V-1.25V)/(\frac{\pi}{2}rad+\frac{\pi}{2}rad) \\
+    K_S&=(3.76V-1.25V)/(\frac{\pi}{2}\text{rad}+\frac{\pi}{2}\text{rad}) \\
     K_S&=0.8\text{ V/rad}
 \end{align}
-    
+
+The transfer function that relates $V_P$ to $\Theta_L$ is:
+\begin{equation}
+    \frac{-1}{\frac{1}{NK_{\tau}}J_{eq}L_Ms^3 + \frac{1}{NK_{\tau}}J_{eq}R_Ms^2+NK_Bs}
+\end{equation} 
+
+I derived $J_{eq}$ using:
+
+\begin{align*}
+    J_{eq} &= J_L + N^2J_M \\
+    J_{eq} &= 0.018535612kgm^2
+\end{align*}
+
+Plugging in the parameter values:
+\begin{equation}
+    \frac{-1}{0.000266135\;V\cdot sec^3 \;s^3 + 2.6893656\;V\cdot sec^2\;s^2+0.132\;\frac{V\cdot sec}{rad}\;s}
+\end{equation} 
+
+\section*{2.}
+
+\textit{
+    "[20pts] Simulate the system relating power amp voltage $V_P$ to sensor voltage $V_S$ using a single
+    transfer function block from the Continuous library in Simulink. I suggest you compute
+    polynomial coefficients in a separate m-file (as in the intro\_sims.m example), so the simulink
+    system can be built using simple variable names from the workspace. Use a sinusoidal power
+    amp input voltage (1V peak, 1Hz), and plot the corresponding input and output signals, with
+    appropriate units. Does the output follow the input closely?"
+}
+
+I set up the variables for the transfer function as suggested in a matlab file as shown below.
+
+\begin{lstlisting}[style=matlabstyle]
+coeff3=0.000266135; % [Vs^3]
+coeff2=2.6893656; % [Vs^2]
+coeff1=0.132; % [Vs/rad]
+num = [-1];
+den = [coeff3, coeff2, coeff1, 0];
+format longG;
+disp(roots(den));
+
+plot(out.inData.time, out.inData.Data, 'b-', ...
+     out.outData.time, out.outData.Data, 'r--');
+
+xlabel('Time (s)');
+ylabel('Voltage (V)');
+legend('Input Vp', 'Sensor Voltage Vs');
+title('Input vs. Output');
+grid on;
+\end{lstlisting}
+
+I then created my model in Simulink using num and den from the m file for the transfer function, a 1V-1Hz sine wave input, and a couple 'To Workspace' blocks so I could plot the input/output.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{simulinkOpenModel.png}
+\end{figure}
+
+Then I ran the simulation and plotted the results as you can see below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{openPlot.png}
+\end{figure}
+
+As for whether the output follows the input I would say in one sense it does, the oscillations match up.
+When the input goes down so does the output at the same time.
+However, in another sense the output doesn't really follow the input, it does small oscillations but mostly just slowly converges to -1.
+
+\section*{3.}
+
+\textit{
+    "[10pts] Derive the closed loop transfer function between reference angle
+    $\Theta_R$ and load shaft angle $\Theta_L$ when the controller has a 
+    proportional-plus-derivative (PD) control law, i.e.
+    $V_P = G_P(\Theta_R - \Theta_L) + G_D\frac{d}{dt}(\Theta_R - \Theta_L).$
+    Determine the DC gain of the closed loop system."
+}
+
+
+
 \end{document}

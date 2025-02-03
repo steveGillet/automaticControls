@@ -1,0 +1,10 @@
+coeff3=0.000266135; % [Vs^3]
+coeff2=2.6893656; % [Vs^2]
+coeff1=0.132; % [Vs/rad]
+num = [-1];
+den = [coeff3, coeff2, coeff1];
+
+plot(input.time, input.signals.values, 'b-', ...
+     output.time, output.signals.values, 'r--');
+
+xlabel
