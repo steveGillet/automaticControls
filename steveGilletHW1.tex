@@ -64,8 +64,11 @@ I took the parameters from the motor specification table above using part number
     K_B&=238\text{rpm/V}=0.04\text{ Vs/rad} \\
     N&=3.3 \\
     J_L&=0.018522\text{ kgm}^2 \\
-    K_S&=0.8
+    K_S&=0.8\text{ V/rad}
 \end{align*}
+
+I derived N by using the logic that the gear ratio measured in radii is equal to the gear ratio measured in circumferences and if the teeth on both gears are the same size then you could measure the circumference in number of teeth and take the ratio of numbers of teeth.
+The load shaft gear has 120 teeth and the motor shaft gear has 36, making the ratio 3.33.
 
 I estimated $J_L$, using standard inertia formulas for a rod rotating about one end and a satellite (for the weight) and added them together.
 \\
@@ -129,5 +132,16 @@ Then I used those numbers (including length of arm for L) to calculate the momen
     J_L = 0.00187 + 0.01645 = 0.018522 \text{ kg}\text{m}^2
 \end{equation}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{potentiometerSpec.png}
+\end{figure}
+
+To derive $K_S$ I used the readings/schematic above.
+I took the total voltage difference over the total angle difference (converted to radians).
+\begin{align}
+    K_S&=(3.76V-1.25V)/(\frac{\pi}{2}rad+\frac{\pi}{2}rad) \\
+    K_S&=0.8\text{ V/rad}
+\end{align}
     
 \end{document}
