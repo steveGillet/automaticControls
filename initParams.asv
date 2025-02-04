@@ -2,9 +2,23 @@ coeff3=0.000266135; % [Vs^3]
 coeff2=2.6893656; % [Vs^2]
 coeff1=0.132; % [Vs/rad]
 num = [-1];
-den = [coeff3, coeff2, coeff1];
+den = [coeff3, coeff2, coeff1, 0];
+format longG;
+disp(roots(den));
 
-plot(input.time, input.signals.values, 'b-', ...
-     output.time, output.signals.values, 'r--');
+Gp = 10;
+Gd = 0.1;
+numCL = [-Gd -Gp];
+denCL = [0.000266135, 2.6893656, 0.132 + Gp, Gd];
+sysCL = tf(numCL, denCL);
+poles = pole(sysCL);
+disp(poles);
 
-xlabel
+plot(out.closedIn.time, out.closedIn.Data, 'b-', ...
+     out.closedOut.time, out.closedOut.Data, 'r--');
+
+xlabel('Time (s)');
+ylabel('Arm Angle (rads)');
+legend('Input Theta_R', 'Output Theta_L');
+title('Closed Loop Arm Angle Tracking');
+grid on;

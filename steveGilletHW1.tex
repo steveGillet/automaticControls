@@ -6,14 +6,14 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[a4paper, margin=1in]{geometry}
-\title{Homework 1}
-\author{Steve Gillet}
-\date{\today}
 
 % Custom information
 \newcommand{\className}{Course: Automatic Control Systems – ASEN 5114-001 – Spring 2025}
 \newcommand{\professorName}{Professor: Dale Lawrence}
 \newcommand{\taName}{Teaching Assistant: Anantha Dhruva}
+\title{Homework 1 \\ \className \\ \professorName \\ \taName}
+\author{Steve Gillet}
+\date{\today}
 
 \lstdefinestyle{matlabstyle}{
     language=Matlab,              % Specify the language
@@ -221,6 +221,147 @@ However, in another sense the output doesn't really follow the input, it does sm
     Determine the DC gain of the closed loop system."
 }
 
+I derived the closed loop transfer function using the closed loop relationship
 
+\[
+\frac{\Theta_L}{\Theta_R}=\frac{PC}{1+PC}
+\]
+
+Where P is the plant and C is the controller.
+I will use the same B/A transfer function for the plant and the proportional and derivative gains for the controller.
+
+\begin{align*}
+    P &= \frac{B}{A} \\
+    C &= G_P+G_D\frac{d}{dt} \\
+    \frac{\Theta_L}{\Theta_R}&=\frac{P(G_P+G_D\frac{d}{dt})}{1+P(G_P+G_D\frac{d}{dt})}
+\end{align*}
+
+The DC gain of the closed loop system can be derived by converting the transfer function to the LaPlace domain and getting the value as s goes to 0.
+
+\[
+\frac{\Theta_L}{\Theta_R}=\frac{P(s)(G_P+G_Ds)}{1+P(s)(G_P+G_Ds)}
+\]
+
+The value of the plant goes to infinity as s goes to 0 since the plant is -1 over a few powers of s.
+This then means that the closed loop transfer function becomes $\frac{\infty \cdot G_P}{1 + \infty \cdot G_P}$ effectively $\frac{\infty}{\infty}$ which is 1.
+
+\section*{4.}
+
+\textit{
+    "[20pts] Construct a Simulink model of the control system including both proportional and
+    derivative control. DO NOT create one block that represents the closed loop transfer function
+    derived in Part 3. Instead, create a second block for the control law itself and then connect it in a
+    unity-feedback control system with the Plant block from part 2. Label this block diagram with
+    signal names and units"
+}
+\\
+\\
+I constructed the closed loop model using the same plant from the open loop, the PID Controller Block which I just set to PD and set the gains to 10 and 0.1 and left the filter coefficient at 100 because I don't really understand it but I believe it is intended to stabilize the signal at high frequencies, and then I put in a step source instead of the sine wave source.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{closedModel.png}
+\end{figure}
+
+\section*{5.}
+
+\textit{
+    "[10pts] Plot the simulated step response (0.4 radian amplitude) of this closed loop control
+    system using a proportional gain of 10 V/rad and a derivative gain of 0.1 V/rad/s . Compare the
+    steady state tracking behavior to that predicted by the DC gain calculated in part 3."
+}
+\\
+\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{closedLoopStepPlot.png}
+\end{figure}
+
+This does not look good, definitely not converging on the reference value.
+Exploding to negative infinity.
+I think something is wrong thought the final value theorem for the plant would indicate negative infinity, the final value theorem also only applies if a system is stable.
+
+\section*{6.}
+
+\textit{
+    "[20pts] Repeat part 5, but use sinusoid reference signals at 0.4 rad amplitude, with frequencies
+    of 0.2 Hz and 2 Hz. Comment on the relative tracking ability of the system at these two
+    frequencies."
+}
+\\
+\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{closedSinePoint2Hz.png}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{closedSine2Hz.png}
+\end{figure}
+
+More explosions.
+
+Okay, I think I figured out the issue.
+I wrote out the closed loop transfer function so I could derive those roots and see what the behavior should look like.
+
+Starting from the transfer function I derived above:
+\[
+\frac{\theta_L(s)}{\theta_R(s)} = \frac{P(s) \cdot (G_P + G_D s)}{1 + P(s) \cdot (G_P + G_D s)}
+\]
+
+Substitute \(P(s)\) with the plant's transfer function:
+\[
+P(s) = \frac{-1}{0.000266135 s^3 + 2.6893656 s^2 + 0.132 s}
+\]
+
+Therefore, the closed-loop transfer function becomes:
+\[
+\frac{\theta_L(s)}{\theta_R(s)} = \frac{\left(\frac{-1}{0.000266135 s^3 + 2.6893656 s^2 + 0.132 s}\right) \cdot (G_P + G_D s)}{1 + \left(\frac{-1}{0.000266135 s^3 + 2.6893656 s^2 + 0.132 s}\right) \cdot (G_P + G_D s)}
+\]
+
+Simplify the expression:
+\[
+\frac{\theta_L(s)}{\theta_R(s)} = \frac{-(G_P + G_D s)}{0.000266135 s^3 + 2.6893656 s^2 + 0.132 s - G_P - G_D s}
+\]
+
+Combine like terms in the denominator:
+\[
+\frac{\theta_L(s)}{\theta_R(s)} = \frac{-(G_P + G_D s)}{0.000266135 s^3 + 2.6893656 s^2 + (0.132 - G_D) s - G_P}
+\]
+
+The final closed-loop transfer function is:
+\[
+\frac{\theta_L(s)}{\theta_R(s)} = \frac{-G_D s - G_P}{0.000266135 s^3 + 2.6893656 s^2 + (0.132 - G_D) s - G_P}
+\]
+
+I used the built-in roots function to get the roots of this transfer function in Matlab.
+
+\begin{lstlisting}[style=matlabstyle]
+Gp = 10;
+Gd = 0.1;
+numCL = [-Gd -Gp];
+denCL = [0.000266135, 2.6893656, 0.132 - Gd, -Gp];
+disp(roots(denCL));
+\end{lstlisting}
+
+Results:
+-10105.2561121366
+-1.9344463849097
+1.92217969120724
+
+Aha! A positive root. Not good.
+
+I changed the gains to be negative and look:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{negativeGain.png}
+\end{figure}
+
+That's the 2Hz sine with -10 proportional gain and -0.1 derivative gain.
+Not exactly tracking but stable.
+I suspect this was either a trick question type situation or my calculations missed a sign somewhere tragically.
+More investigation required.
 
 \end{document}

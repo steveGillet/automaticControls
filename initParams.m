@@ -6,11 +6,17 @@ den = [coeff3, coeff2, coeff1, 0];
 format longG;
 disp(roots(den));
 
-plot(out.inData.time, out.inData.Data, 'b-', ...
-     out.outData.time, out.outData.Data, 'r--');
+Gp = 10;
+Gd = 0.1;
+numCL = [-Gd -Gp];
+denCL = [0.000266135, 2.6893656, 0.132 - Gd, -Gp];
+disp(roots(denCL));
+
+plot(out.closedIn.time, out.closedIn.Data, 'b-', ...
+     out.closedOut.time, out.closedOut.Data, 'r--');
 
 xlabel('Time (s)');
-ylabel('Voltage (V)');
-legend('Input Vp', 'Sensor Voltage Vs');
-title('Input vs. Output');
+ylabel('Arm Angle (rads)');
+legend('Input Theta_R', 'Output Theta_L');
+title('Closed Loop Arm Angle Tracking');
 grid on;
