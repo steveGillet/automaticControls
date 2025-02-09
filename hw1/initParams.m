@@ -1,6 +1,6 @@
-coeff3=0.000266135; % [Vs^3]
-coeff2=2.6893656; % [Vs^2]
-coeff1=0.132; % [Vs/rad]
+coeff3=0.000028291; % [Vs^3]
+coeff2=0.285890679; % [Vs^2]
+coeff1=1.332; % [Vs/rad]
 num = [-1];
 den = [coeff3, coeff2, coeff1, 0];
 format longG;

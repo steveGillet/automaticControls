@@ -62,13 +62,20 @@ I took the parameters from the motor specification table above using part number
     K_\tau&=40.1\text{mNm/A}=0.0401\text{ Nm/A}  \\
     J_M&=12.5\text{gcm}^2=0.00000125\text{ kgm}^2 \\
     K_B&=238\text{rpm/V}=0.04\text{ Vs/rad} \\
-    N&=3.3 \\
+    N&=33.3 \\
     J_L&=0.018522\text{ kgm}^2 \\
     K_S&=0.8\text{ V/rad}
 \end{align*}
 
 I derived N by using the logic that the gear ratio measured in radii is equal to the gear ratio measured in circumferences and if the teeth on both gears are the same size then you could measure the circumference in number of teeth and take the ratio of numbers of teeth.
-The load shaft gear has 120 teeth and the motor shaft gear has 36, making the ratio 3.33.
+The load shaft gear has 120 teeth and the motor shaft gear has 36, making the ratio between them 3.33.
+The ratio from the motor to the motor shaft gear through the gear head is 10, making the total gear ratio 33.3.
+I got the gear head ratio from the spec sheet below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{gearHeadSpec.png}
+\end{figure}
 
 I estimated $J_L$, using standard inertia formulas for a rod rotating about one end and a satellite (for the weight) and added them together.
 \\
@@ -129,7 +136,7 @@ Then I used those numbers (including length of arm for L) to calculate the momen
 \end{equation}
 
 \begin{equation}
-    J_L = 0.00187 + 0.01645 = 0.018522 \text{ kg}\text{m}^2
+    J_L = 0.001872 + 0.01665 = 0.018522 \text{ kg}\text{m}^2
 \end{equation}
 
 \begin{figure}[H]
@@ -153,12 +160,12 @@ I derived $J_{eq}$ using:
 
 \begin{align*}
     J_{eq} &= J_L + N^2J_M \\
-    J_{eq} &= 0.018535612kgm^2
+    J_{eq} &= 0.01988325kgm^2
 \end{align*}
 
 Plugging in the parameter values:
 \begin{equation}
-    \frac{-1}{0.000266135\;V\cdot sec^3 \;s^3 + 2.6893656\;V\cdot sec^2\;s^2+0.132\;\frac{V\cdot sec}{rad}\;s}
+    \frac{-1}{0.000028291\;V\cdot sec^3 \;s^3 + 0.285890679\;V\cdot sec^2\;s^2+1.332\;\frac{V\cdot sec}{rad}\;s}
 \end{equation} 
 
 \section*{2.}

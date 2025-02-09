@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  3 FEB 2025 22:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  8 FEB 2025 22:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/steve0gillet/Desktop/automaticControls/steveGilletHW1.tex
-(/home/steve0gillet/Desktop/automaticControls/steveGilletHW1.tex
+**/home/steve0gillet/Desktop/automaticControls/hw1/steveGilletHW1.tex
+(/home/steve0gillet/Desktop/automaticControls/hw1/steveGilletHW1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -261,84 +261,90 @@ Package pdftex.def Info: motorSpec.png  used on input line 55.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./motorSpec.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 73--84
+<gearHeadSpec.png, id=16, 1159.33125pt x 331.2375pt>
+File: gearHeadSpec.png Graphic file (type png)
+<use gearHeadSpec.png>
+Package pdftex.def Info: gearHeadSpec.png  used on input line 77.
+(pdftex.def)             Requested size: 452.9679pt x 129.41965pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--91
 
  []
 
-<potentiometerSpec.png, id=16, 629.35126pt x 425.59pt>
+[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./gearHeadSpec.png>]
+<potentiometerSpec.png, id=24, 629.35126pt x 425.59pt>
 File: potentiometerSpec.png Graphic file (type png)
 <use potentiometerSpec.png>
-Package pdftex.def Info: potentiometerSpec.png  used on input line 137.
+Package pdftex.def Info: potentiometerSpec.png  used on input line 144.
 (pdftex.def)             Requested size: 362.37569pt x 245.05002pt.
-[2{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+ [3 <./potentiometerSpec.png>] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 183.
- [3 <./potentiometerSpec.png>]
-<simulinkOpenModel.png, id=29, 332.24126pt x 181.67876pt>
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 190.
+<simulinkOpenModel.png, id=31, 332.24126pt x 181.67876pt>
 File: simulinkOpenModel.png Graphic file (type png)
 <use simulinkOpenModel.png>
-Package pdftex.def Info: simulinkOpenModel.png  used on input line 200.
+Package pdftex.def Info: simulinkOpenModel.png  used on input line 207.
 (pdftex.def)             Requested size: 362.37569pt x 198.16728pt.
-<openPlot.png, id=30, 858.20625pt x 560.8453pt>
+<openPlot.png, id=32, 858.20625pt x 560.8453pt>
 File: openPlot.png Graphic file (type png)
 <use openPlot.png>
-Package pdftex.def Info: openPlot.png  used on input line 207.
+Package pdftex.def Info: openPlot.png  used on input line 214.
 (pdftex.def)             Requested size: 452.9679pt x 296.02283pt.
  [4 <./simulinkOpenModel.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 256--260
+Underfull \hbox (badness 10000) in paragraph at lines 263--267
 
  []
 
 [5 <./openPlot.png (PNG copy)>]
-<closedModel.png, id=40, 624.3325pt x 329.23pt>
+<closedModel.png, id=42, 624.3325pt x 329.23pt>
 File: closedModel.png Graphic file (type png)
 <use closedModel.png>
-Package pdftex.def Info: closedModel.png  used on input line 263.
+Package pdftex.def Info: closedModel.png  used on input line 270.
 (pdftex.def)             Requested size: 452.9679pt x 238.86899pt.
-<closedLoopStepPlot.png, id=41, 429.10312pt x 338.76563pt>
+<closedLoopStepPlot.png, id=43, 429.10312pt x 338.76563pt>
 File: closedLoopStepPlot.png Graphic file (type png)
 <use closedLoopStepPlot.png>
-Package pdftex.def Info: closedLoopStepPlot.png  used on input line 277.
+Package pdftex.def Info: closedLoopStepPlot.png  used on input line 284.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--278
+Underfull \hbox (badness 10000) in paragraph at lines 279--285
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--278
+Underfull \hbox (badness 10000) in paragraph at lines 279--285
 
  []
 
 [6 <./closedModel.png>]
-<closedSinePoint2Hz.png, id=46, 429.10312pt x 338.76563pt>
+<closedSinePoint2Hz.png, id=48, 429.10312pt x 338.76563pt>
 File: closedSinePoint2Hz.png Graphic file (type png)
 <use closedSinePoint2Hz.png>
-Package pdftex.def Info: closedSinePoint2Hz.png  used on input line 295.
+Package pdftex.def Info: closedSinePoint2Hz.png  used on input line 302.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 290--296
+Underfull \hbox (badness 10000) in paragraph at lines 297--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 290--296
+Underfull \hbox (badness 10000) in paragraph at lines 297--303
 
  []
 
 [7 <./closedLoopStepPlot.png (PNG copy)>]
-<closedSine2Hz.png, id=51, 429.10312pt x 338.76563pt>
+<closedSine2Hz.png, id=53, 429.10312pt x 338.76563pt>
 File: closedSine2Hz.png Graphic file (type png)
 <use closedSine2Hz.png>
-Package pdftex.def Info: closedSine2Hz.png  used on input line 300.
+Package pdftex.def Info: closedSine2Hz.png  used on input line 307.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
  [8 <./closedSinePoint2Hz.png (PNG copy)> <./closedSine2Hz.png (PNG copy)>]
-<negativeGain.png, id=55, 429.10312pt x 338.76563pt>
+<negativeGain.png, id=57, 429.10312pt x 338.76563pt>
 File: negativeGain.png Graphic file (type png)
 <use negativeGain.png>
-Package pdftex.def Info: negativeGain.png  used on input line 359.
+Package pdftex.def Info: negativeGain.png  used on input line 366.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
  [9 <./negativeGain.png (PNG copy)>] (./steveGilletHW1.aux)
  ***********
@@ -347,18 +353,18 @@ L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5757 strings out of 474222
- 82797 string characters out of 5748732
- 2033975 words of memory out of 5000000
- 27985 multiletter control sequences out of 15000+600000
+ 5764 strings out of 474222
+ 82969 string characters out of 5748732
+ 2035975 words of memory out of 5000000
+ 27992 multiletter control sequences out of 15000+600000
  563854 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,10n,65p,471b,2268s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,10n,65p,475b,1773s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on steveGilletHW1.pdf (9 pages, 470197 bytes).
+Output written on steveGilletHW1.pdf (9 pages, 612258 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
+ 126 PDF objects out of 1000 (max. 8388607)
  69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

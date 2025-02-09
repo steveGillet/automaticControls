@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[a4paper, margin=1in]{geometry}
+
+% Custom information
+\newcommand{\className}{Course: Automatic Control Systems – ASEN 5114-001 – Spring 2025}
+\newcommand{\professorName}{Professor: Dale Lawrence}
+\newcommand{\taName}{Teaching Assistant: Anantha Dhruva}
+\title{Homework 2 \\ \className \\ \professorName \\ \taName}
+\author{Steve Gillet}
+\date{\today}
+
+\lstdefinestyle{matlabstyle}{
+    language=Matlab,              % Specify the language
+    basicstyle=\ttfamily\footnotesize\color{black}, % Code font
+    keywordstyle=\color{blue}\bfseries, % Keywords in blue
+    stringstyle=\color{green},    % Strings in green
+    commentstyle=\color{magenta}, % Comments in magenta
+    numbers=left,                 % Line numbers on the left
+    numberstyle=\tiny\color{black},% Line number style
+    stepnumber=1,                 % Line number increment
+    breaklines=true,              % Line breaking
+    frame=single,                 % Border around code
+    backgroundcolor=\color{white},
+    tabsize=4,                    % Tab size
+    showstringspaces=false,       % Don't show spaces in strings
+}
+
+\begin{document}
+
+\maketitle
+\textit{
+    "Use the plant and controller models from Homework 1 to explore the effect of control gains on
+    closed loop system poles, and hence the effect on the closed loop natural response of the load
+    shaft angle."
+}
+
+\section*{1.}
+
+\textit{
+    "Find the poles of the plant from your transfer function model from Experiment 1. Plot these
+    in the complex plane."
+}
+
+\section*{2.}
+
+\textit{
+    "Find the poles of the closed loop system from part 5 of Homework 1. Plot these on the same
+    plot as in part 1. above."
+}
+
+\section*{3.}
+
+\textit{
+    "Repeat part 2. above, using a gain factor g in the control law that varies between 0 and 1, in
+    100 steps. Plot this 'root locus with respect to g' on the same plot as above. Describe the
+    effect of this control system gain on the closed loop poles."
+}
+
+\section*{4.}
+
+\textit{
+    "Repeat part 3. above but use gain values g between 1 and 100. Describe the effect on the
+    closed loop poles."
+}
+
+\section*{5.}
+
+\textit{
+    "Repeat part 4. but use negative g values between 0 and -1."
+}
+
+\section*{6.}
+
+\textit{
+    "What does the above root locus analysis tell you about the effect of the gain g on the closed
+    loop system’s natural response? Verify your conclusions by simulating the closed loop step
+    response for several values for g."
+}
+
+\end{document}
