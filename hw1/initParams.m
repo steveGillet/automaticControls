@@ -37,11 +37,20 @@ end
 legend('Open Loop Poles', 'Closed Loop Poles', 'Root Locus');
 hold off;
 
+% plot(out.inData.time, out.inData.Data, 'b-', ...
+%      out.outData.time, out.outData.Data, 'r-');
+% 
+% xlabel('Time (s)');
+% ylabel('Voltage (V)');
+% legend('Input Vp', 'Sensor Voltage Vs');
+% title('Open Loop Input vs. Output Voltage');
+% grid on;
+
 plot(out.closedIn.time, out.closedIn.Data, 'b-', ...
-     out.closedOut.time, out.closedOut.Data, 'r--');
+     out.closedOut.time, out.closedOut.Data, 'r-');
 
 xlabel('Time (s)');
-ylabel('Arm Angle (rads)');
-legend('Input Theta_R', 'Output Theta_L');
-title('-1 g Closed Loop Arm Angle Tracking');
+ylabel('Angle (rads)');
+legend('Reference Theta R', 'Output Theta L');
+title('Closed Loop Reference Angle vs. Load Shaft Angle');
 grid on;

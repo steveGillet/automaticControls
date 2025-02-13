@@ -10,7 +10,7 @@ disp(poles);
 figure;
 hold on;
 plot(real(poles), imag(poles), 'bx', 'MarkerSize', 10, 'LineWidth', 2);
-title('Root Locus G 1 to 100');
+title('Root Locus G 0 to -1');
 xlabel('Re');
 ylabel('Im');
 grid on;
@@ -25,7 +25,7 @@ disp(polesCL);
 plot(real(polesCL), imag(polesCL), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 
 
-gScalar = linspace(1, 100, 100);
+gScalar = linspace(0, -1, 100);
 for i = 1:length(gScalar)
     g = gScalar(i);
     denCL = [coeff3, coeff2, coeff1 - Gd*g, -Gp*g];
@@ -35,12 +35,22 @@ for i = 1:length(gScalar)
 end
 
 legend('Open Loop Poles', 'Closed Loop Poles', 'Root Locus');
+hold off;
 
-% plot(out.closedIn.time, out.closedIn.Data, 'b-', ...
-%      out.closedOut.time, out.closedOut.Data, 'r--');
+% plot(out.inData.time, out.inData.Data, 'b-', ...
+%      out.outData.time, out.outData.Data, 'r-');
 % 
 % xlabel('Time (s)');
-% ylabel('Arm Angle (rads)');
-% legend('Input Theta_R', 'Output Theta_L');
-% title('Closed Loop Arm Angle Tracking');
+% ylabel('Voltage (V)');
+% legend('Input Vp', 'Sensor Voltage Vs');
+% title('Open Loop Input vs. Output Voltage');
 % grid on;
+
+plot(out.closedIn.time, out.closedIn.Data, 'b-', ...
+     out.closedOut.time, out.closedOut.Data, 'r-');
+
+xlabel('Time (s)');
+ylabel('Angle (rads)');
+legend('Input Theta R', 'Output Theta L');
+title('Open Loop Input vs. Output Voltage');
+grid on;

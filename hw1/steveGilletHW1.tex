@@ -182,13 +182,14 @@ Plugging in the parameter values:
 I set up the variables for the transfer function as suggested in a matlab file as shown below.
 
 \begin{lstlisting}[style=matlabstyle]
-coeff3=0.000266135; % [Vs^3]
-coeff2=2.6893656; % [Vs^2]
-coeff1=0.132; % [Vs/rad]
+coeff3=0.000028291; % [Vs^3]
+coeff2=0.285890679; % [Vs^2]
+coeff1=1.332; % [Vs/rad]
 num = [-1];
 den = [coeff3, coeff2, coeff1, 0];
 format longG;
-disp(roots(den));
+poles = roots(den);
+disp(poles);
 
 plot(out.inData.time, out.inData.Data, 'b-', ...
      out.outData.time, out.outData.Data, 'r--');
@@ -196,7 +197,7 @@ plot(out.inData.time, out.inData.Data, 'b-', ...
 xlabel('Time (s)');
 ylabel('Voltage (V)');
 legend('Input Vp', 'Sensor Voltage Vs');
-title('Input vs. Output');
+title('Open Loop Input vs. Output Voltage');
 grid on;
 \end{lstlisting}
 
@@ -214,9 +215,8 @@ Then I ran the simulation and plotted the results as you can see below:
     \includegraphics[width=\textwidth]{openPlot.png}
 \end{figure}
 
-As for whether the output follows the input I would say in one sense it does, the oscillations match up.
-When the input goes down so does the output at the same time.
-However, in another sense the output doesn't really follow the input, it does small oscillations but mostly just slowly converges to -1.
+The output follows the input in that they are both constant, steady sine waves.
+However, the magnitude and phase is shifted, the magnitude is attenuated, the output is also shifted down so that the whole signal is negative instead of oscillating between -1 and 1 like thee input.
 
 \section*{3.}
 
@@ -249,8 +249,14 @@ The DC gain of the closed loop system can be derived by converting the transfer 
 \frac{\Theta_L}{\Theta_R}=\frac{P(s)(G_P+G_Ds)}{1+P(s)(G_P+G_Ds)}
 \]
 
-The value of the plant goes to infinity as s goes to 0 since the plant is -1 over a few powers of s.
-This then means that the closed loop transfer function becomes $\frac{\infty \cdot G_P}{1 + \infty \cdot G_P}$ effectively $\frac{\infty}{\infty}$ which is 1.
+This can be rewritten as:
+
+\[
+\frac{\Theta_L}{\Theta_R}=\frac{(G_P+G_Ds)}{\frac{1}{P(s)}+(G_P+G_Ds)}
+\]
+
+$\frac{1}{P(s)}$ goes to 0 since the plant is -1 over a few powers of s, the reciprocal of that is just negative a few powers of s which all go to 0.
+$G_Ds$ also goes to 0 so you are left with $\frac{G_P}{G_P}$ which is 1.
 
 \section*{4.}
 
@@ -263,7 +269,7 @@ This then means that the closed loop transfer function becomes $\frac{\infty \cd
 }
 \\
 \\
-I constructed the closed loop model using the same plant from the open loop, the PID Controller Block which I just set to PD and set the gains to 10 and 0.1 and left the filter coefficient at 100 because I don't really understand it but I believe it is intended to stabilize the signal at high frequencies, and then I put in a step source instead of the sine wave source.
+I constructed the closed loop model using the same plant from the open loop, the PID Controller Block which I just set to PD and set the gains to -10 and -0.1 and left the filter coefficient at 100 because I don't really understand it but I believe it is intended to stabilize the signal at high frequencies, and then I put in a step source instead of the sine wave source.
 
 \begin{figure}[H]
     \centering
@@ -284,9 +290,7 @@ I constructed the closed loop model using the same plant from the open loop, the
     \includegraphics[width=0.8\textwidth]{closedLoopStepPlot.png}
 \end{figure}
 
-This does not look good, definitely not converging on the reference value.
-Exploding to negative infinity.
-I think something is wrong thought the final value theorem for the plant would indicate negative infinity, the final value theorem also only applies if a system is stable.
+The steady state tracking behavior is right on, after the natural response oscillation settles the output settles to exactly the same value as the input.
 
 \section*{6.}
 
@@ -307,7 +311,16 @@ I think something is wrong thought the final value theorem for the plant would i
     \includegraphics[width=0.8\textwidth]{closedSine2Hz.png}
 \end{figure}
 
-More explosions.
+At 0.2 Hz the output tracks the input pretty closely though there is a bit of a phase shift delay.
+At the higher 2 Hz frequency you can see much more of a phase shift and an attenuation of the magnitude.
+The s in the denominator of the transfer function create integration-like behavior and when the frequency is lower those s terms don't have much effect but as it goes higher the s terms dominate and decrease the gain and introduce more of a phase shift.
+
+\bigskip
+
+Below is from an earlier version of this document where I had not included the gearhead ratio in the N calculation and I was using positive gains in my closed loop PD block so the calculations were slightly off and the closed loop gains were causing the system to go unstable so I had a bunch of exploding outputs.
+I'm leaving the notes here because they are interesting and informative and I fully derive the closed loop transfer function and its poles which might be useful information later.
+
+\bigskip
 
 Okay, I think I figured out the issue.
 I wrote out the closed loop transfer function so I could derive those roots and see what the behavior should look like.
