@@ -1,0 +1,272 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage[a4paper, margin=1in]{geometry}
+
+% Custom information
+\newcommand{\className}{Course: Automatic Control Systems – ASEN 5114-001 – Spring 2025}
+\newcommand{\professorName}{Professor: Dale Lawrence}
+\newcommand{\taName}{Teaching Assistant: Anantha Dhruva}
+\title{Homework 3 \\ \className \\ \professorName \\ \taName}
+\author{Steve Gillet}
+\date{\today}
+
+\lstdefinestyle{matlabstyle}{
+    language=Matlab,              % Specify the language
+    basicstyle=\ttfamily\footnotesize\color{black}, % Code font
+    keywordstyle=\color{blue}\bfseries, % Keywords in blue
+    stringstyle=\color{orange},    % Strings in green
+    commentstyle=\color{magenta}, % Comments in magenta
+    numbers=left,                 % Line numbers on the left
+    numberstyle=\tiny\color{black},% Line number style
+    stepnumber=1,                 % Line number increment
+    breaklines=true,              % Line breaking
+    frame=single,                 % Border around code
+    backgroundcolor=\color{white},
+    tabsize=4,                    % Tab size
+    showstringspaces=false,       % Don't show spaces in strings
+}
+
+\renewcommand{\thesection}{\arabic{section})}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+\begin{document}
+
+\maketitle
+\textit{
+    "This provides some practice using the direct state space modeling approach discussed in class.
+    Please use this method to work the following problems from the textbook. Undergraduates
+    (4114) do problems 1) and 2). Graduate students (5114) do all three problems."
+}
+
+\section{}
+
+\textit{
+    "Problem 2.5. Develop the state space equations of motion for the car suspension of
+    Example 2.2, and simulate the response using the parameters provided in the problem
+    statement."
+}
+
+Problem 2.5 statement from the textbook:
+
+\textit{
+    "2.5. For the car suspension discussed in Example 2.2 , plot the position of the car and the wheel after the car hits a “unit bump” (that is,  is a unit step) using Matlab. Assume 
+    $m_1 = 10 kg$, $m_2 = 350 kg$, $K_w = 500,000 N/m$, and $K_s = 10,000 N/m$.
+    Find the value of b that you would prefer if you were a passenger in the car."
+}
+
+Example 2.2 statement:
+
+\textit{
+    "Figure 2.4 shows an automobile suspension system. Write the equations of motion for the automobile and wheel motion assuming one-dimensional vertical motion of one quarter of the car mass above one wheel. A system consisting of one of the four-wheel suspensions is usually referred to as a quarter-car model. The system can be approximated by the simplified system shown in Fig. 2.5 where two spring constants and a damping coefficient are defined. Assume the model is for a car with a mass of 1580 kg, including the four wheels, which have a mass of 20 kg each. By placing a known weight (an author) directly over a wheel and measuring the car’s deflection, we find that 
+    $k_s = 130,000 N/m$. Measuring the wheel’s deflection for the same applied weight, we find that 
+    $k_w \approx 1,000,000 N/m$. By using the step response data in Fig. 3.19 (b) and qualitatively observing that the car’s response to a step change matches the damping coefficient curve for  in the figure, we conclude that ."
+}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig24.png}
+    \caption*{Figure 2.4: Automobile suspension}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig25.png}
+    \caption*{Figure 2.5: The quarter-car model}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig319b.png}
+    \caption*{Figure 3.19 (b): Responses of second-order systems versus $\zeta$: step responses}
+\end{figure}
+
+\subsection{Identify}
+\subsubsection{Input}
+\begin{align*}
+\text{Input: } & u = r
+\end{align*}
+
+\subsubsection{Output}
+\begin{align*}
+\text{Output: } & y = y \ (\text{or } \ddot{y})
+\end{align*}
+
+\subsubsection{States}
+\begin{align*}
+\text{Mass 2: } & x_1 = v_{m_2} = \dot{y} \\
+\text{Spring K: } & x_2 = f_{k_s} \\
+\text{Mass 1: } & x_3 = v_{m_1} \\
+\text{Spring K: } & x_4 = f_{k_w}
+\end{align*}
+
+\subsection{Canonical State Variables}
+\begin{align*}
+x^*_1 &= f_{m_2}, \quad x^*_2 = v_{k_s}, \quad x^*_3 = f_{m_1}, \quad x^*_4 = v_{k_w}
+\end{align*}
+
+\subsection{Topology Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = -f_{k_s} - f_b = -f_{k_s} - bv_b = -f_{k_s} - b(v_{m_2} - v_{m_1}) = -x_2 - b(x_1 - x_3) \\
+x^*_2 &= v_{k_s} = v_{m_2} - v_{m_1} = x_1 - x_3 \\
+x^*_3 &= f_{m_1} = -f_{k_w} = -x_4 \\
+x^*_4 &= v_{k_w} = v_{m_1} - \dot{r} = x_3 - \dot{r}
+\end{align*}
+
+\subsection{Energy Storage Element Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = m_2 \dot{v}_{m_2} = m_2 \dot{x}_1 \Rightarrow \dot{x}_1 = \frac{1}{m_2} (x_1^*) = \frac{1}{m_2} (-x_2 - b(x_1-x_3)) \\
+x^*_2 &= v_{k_s} = \frac{1}{k_s} \dot{f}_{k_s} = \frac{1}{k_s} \dot{x}_2 \Rightarrow \dot{x}_2 = k_s x^*_2 = k_s (x_1 - x_3) \\
+x^*_3 &= f_{m_1} = m_1 \dot{v}_{m_1} = m_1 \dot{x}_3 \Rightarrow \dot{x}_3 = \frac{1}{m_1} (x_3^*) = -\frac{1}{m_1} x_4 \\
+x^*_4 &= v_{k_w} = \frac{1}{k_w} \dot{f}_{k_w} = \frac{1}{k_w} \dot{x}_4 \Rightarrow \dot{x}_4 = k_w(x^*_4) = k_w (x_3 - \dot{r})
+\end{align*}
+
+\subsection{Collect in Matrix Form}
+\[
+\begin{bmatrix}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3 \\
+\dot{x}_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+-\frac{b}{m_2} & -\frac{1}{m_2} & \frac{b}{m_2} & 0 \\
+k_s & 0 & -k_s & 0 \\
+0 & 0 & 0 & -\frac{1}{m_1} \\
+0 & 0 & k_w & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
++
+\begin{bmatrix}
+0 \\
+0 \\
+0 \\
+-k_w
+\end{bmatrix}
+\dot{r}
+\]
+
+\[
+y = 
+\begin{bmatrix}
+1 & 0 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
++
+\begin{bmatrix}
+0
+\end{bmatrix}
+u
+\]
+
+\subsection*{Simulation}
+
+After deriving the state space model for the system I put that model into Matlab using the 'ss' function and the parameters from the Problem 2.5 statement.
+The problem statement asks to find a suitable b value, so I started with 1.
+
+\begin{lstlisting}[style=matlabstyle]
+b = 1;
+m1 = 10; % [kg]
+m2 = 350; % [kg]
+kw = 500000; % [Nm]
+ks = 10000; % [Nm]
+
+
+A = [-b/m2 -1/m2 b/m2 0; ks 0 -ks 0; 0 0 0 -1/m1; 0 0 kw 0]; 
+B = [0; 0; 0; -kw];       
+C = [1 0 0 0];        
+D = [0];  
+
+carSusSS = ss(A, B, C, D);
+carSusTF = tf(carSusSS);
+disp(carSusTF);
+\end{lstlisting}
+
+Then I got the transfer function from that state space model using the 'tf' function in Matlab and passed that to a simulink model to simulate.
+Then I built the system in simulink using a step input and a continuous transfer function block.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{carSusSimModel.png}
+\end{figure}
+
+Then I ran the simulation at $b=1$ and you can see that there basically is no damping and the system just kind of bangs up and down.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{b1sim.png}
+\end{figure}
+
+Then I tried a few different values for b until I worked my way up to 100 where you can start to see some damping take effect.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{b100sim.png}
+\end{figure}
+
+At b 1,000 I finally saw some behavior that looked pretty good.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{b1000sim.png}
+\end{figure}
+
+Interestingly when I cranked it up to 10,000 it went to 1 very quickly and stayed in that area but does this very rapid oscillation from 1.1 to 0.9 meters.
+It's hard to imagine what this would look like or why turning the damping up too high would cause it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{b10000sim.png}
+\end{figure}
+
+
+\section{}
+
+\textit{
+    "Problem 2.7. This is an extension of Problem 2.5, adding active control to a car
+    suspension."
+}
+
+Problem statement 2.7 from text:
+
+\textit{
+    "2.7. Automobile manufacturers are contemplating building active suspension systems. The simplest change is to make shock absorbers with a changeable damping, 
+    b($u_1$). It is also possible to make a device to be placed in parallel with the springs that has the ability to supply an equal force, 
+    $u_2$, in opposite directions on the wheel axle and the car body.
+}
+\begin{enumerate}[label=\alph*)]
+    \item \textit{Modify the equations of motion in Example 2.2 to include such control inputs.}
+    \item \textit{Is the resulting system linear?}
+    \item \textit{Is it possible to use the force $u_2$ to completely replace the springs and shock absorber? Is this a good idea?"}
+\end{enumerate}
+    
+   
+\section{}
+
+\textit{
+    "Problem 2.22. This is similar to the rigid arm model developed earlier, but with an
+    additional flexible mode due to a rotational spring/mass load on the motor. Take the input
+    to this system to be $v_a$ [V] and the output to be $\Theta_1$ [rad] (the angle where the flexible
+    shaft connects to the motor). Find the eigenvalues of the state space A matrix assuming
+    $L_a = 10 [mH]$, $R_a = 1.0 [Ohm]$, $J_1 = 0.1 [kg \cdot m^2]$, $J_2 = 1.0 [kg \cdot m^2]$, $k = 10 [\frac{Nm}{rad}]$,
+    $b = 0.01 [\frac{Nms}{rad}]$, $K_t = 1.0 [Nm/A]$, $K_e = 1.0 [\frac{Vs}{rad}]$, $B = 0.01 [\frac{Nms}{rad}]$. What partial
+    fraction terms do you expect in the system response to a step input at $v_a$?"
+}
+
+\end{document}
