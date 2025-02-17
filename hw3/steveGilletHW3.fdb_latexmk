@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1739681349.78888 "/home/steve0gillet/Desktop/automaticControls/hw3/steveGilletHW3.tex" "steveGilletHW3.pdf" "steveGilletHW3" 1739681350.46683 0
+["pdflatex"] 1739770368.45605 "/home/steve0gillet/Desktop/automaticControls/hw3/steveGilletHW3.tex" "steveGilletHW3.pdf" "steveGilletHW3" 1739770369.1953 0
   "/etc/texmf/web2c/texmf.cnf" 1730151749.91005 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve0gillet/Desktop/automaticControls/hw3/steveGilletHW3.tex" 1739681349.59429 9463 c7acd713957cec9a741d4e45320f63ff ""
+  "/home/steve0gillet/Desktop/automaticControls/hw3/steveGilletHW3.tex" 1739770368.25724 13695 0fd34a2ea51e15284ddfc27be0435d91 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -71,6 +71,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1730151778.56547 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1730151847 8213962 77fbdab6dff16db976ab03fe1fbc58d0 ""
+  "actSusOnlyModel.png" 1739766094.55495 23723 b627ad9474cd92a9f38911720db1ae67 ""
+  "activeSusModel.png" 1739765667.16184 27601 cc57761f515b898c6fe133fda4528fef ""
   "b10000sim.png" 1739679870.10453 16381 5f54cdbf6ed697f4eb3aadee73030e46 ""
   "b1000sim.png" 1739679804.01341 17556 7ef57d4558d03a800dd788a2b9bbb243 ""
   "b100sim.png" 1739679766.53774 18755 b10f6567196c7e5a587d571c095c1133 ""
@@ -79,8 +81,8 @@
   "fig24.png" 1739670018.86775 52743 2aa66168c0a63eaaafc9b6a56696cf04 ""
   "fig25.png" 1739670204.32127 32980 1c54b2f88ec75560e891609b605e8c02 ""
   "fig319b.png" 1739670252.29839 29917 d9dd423d2ba3789af61e6311a9923a94 ""
-  "steveGilletHW3.aux" 1739681350.37828 1180 83fac1b4d6065d470cd0496148585e32 "pdflatex"
-  "steveGilletHW3.tex" 1739681349.59429 9463 c7acd713957cec9a741d4e45320f63ff ""
+  "steveGilletHW3.aux" 1739770369.13625 2943 7942b4449199fca258dfadf0b509fbcb "pdflatex"
+  "steveGilletHW3.tex" 1739770368.25724 13695 0fd34a2ea51e15284ddfc27be0435d91 ""
   (generated)
   "steveGilletHW3.aux"
   "steveGilletHW3.log"

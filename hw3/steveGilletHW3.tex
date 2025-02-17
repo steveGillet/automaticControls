@@ -255,8 +255,158 @@ Problem statement 2.7 from text:
     \item \textit{Is the resulting system linear?}
     \item \textit{Is it possible to use the force $u_2$ to completely replace the springs and shock absorber? Is this a good idea?"}
 \end{enumerate}
-    
+
+I started by recreating the model using Simulink and adding in the force sources the problem statement describes.
+I've put two of them in parallel with each spring and labelled them both $f_1$ because they represent the same input force going up and down into $m_1$ and up into $m_2$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{activeSusModel.png}
+\end{figure}
+
+Then I rewrote the state space equations:
+
+\subsection{Identify}
+\subsubsection{Input}
+\begin{align*}
+\text{Wheel Displacement: } & u_1 = r \\
+\text{Changeable damping: } & u_2 = b \\
+\text{Active suspension: } & u_3 = f
+\end{align*}
+
+\subsubsection{Output}
+\begin{align*}
+\text{Output: } & y = y
+\end{align*}
+
+\subsubsection{States}
+\begin{align*}
+\text{Mass 2: } & x_1 = v_{m_2} = \dot{y} \\
+\text{Spring K: } & x_2 = f_{k_s} \\
+\text{Mass 1: } & x_3 = v_{m_1} \\
+\text{Spring W: } & x_4 = f_{k_w}
+\end{align*}
+
+\subsection{Canonical State Variables}
+\begin{align*}
+x^*_1 &= f_{m_2}, \quad x^*_2 = v_{k_s}, \quad x^*_3 = f_{m_1}, \quad x^*_3 = v_{k_w}
+\end{align*}
+
+\subsection{Topology Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = -f_{k_s} - f_b - f = -f_{k_s} - bv_b - f = -f_{k_s} - b(v_{m_2} - v_{m_1}) - f = -x_2 - b(x_1 - x_3)  - f \\
+x^*_2 &= v_{k_s} = v_{m_2} - v_{m_1} = x_1 - x_3 \\
+x^*_3 &= f_{m_1} = -f_{k_w} = -x_4 \\
+x^*_4 &= v_{k_w} = v_{m_1} - \dot{r} = x_3 - \dot{r}
+\end{align*}
+
+\subsection{Energy Storage Element Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = m_2 \dot{v}_{m_2} = m_2 \dot{x}_1 \Rightarrow \dot{x}_1 = \frac{1}{m_2} (x_1^*) = \frac{1}{m_2} (-x_2 - b(x_1-x_3) - f) \\
+x^*_2 &= v_{k_s} = \frac{1}{k_s} \dot{f}_{k_s} = \frac{1}{k_s} \dot{x}_2 \Rightarrow \dot{x}_2 = k_s x^*_2 = k_s (x_1 - x_3) \\
+x^*_3 &= f_{m_1} = m_1 \dot{v}_{m_1} = m_1 \dot{x}_3 \Rightarrow \dot{x}_3 = \frac{1}{m_1} (x_3^*) = -\frac{1}{m_1} (x_4) \\
+x^*_4 &= v_{k_w} = \frac{1}{k_w} \dot{f}_{k_w} = \frac{1}{k_w} \dot{x}_4 \Rightarrow \dot{x}_4 = k_w(x^*_4) = k_w (x_3 - \dot{r})
+\end{align*}
+
+\subsection{Collect in Matrix Form}
+
+Setting up $b$ as an input creates a nonlinearity here where two variables are being multiplied together.
+The input $b$ and the state $x_1$ are being multiplied in the energy storage element equation for $\dot{x_1}$.
+I don't think you can and it doesn't really make sense to put the system into matrix form since one of the states is dependent on an input and vice versa.
+
+\subsection*{Replacing Springs and Shock Absorber}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{actSusOnlyModel.png}
+\end{figure}
+
+\subsection{Identify}
+\subsubsection{Input}
+\begin{align*}
+\text{Wheel Displacement: } & u_1 = r \\
+\text{Active suspension: } & u_2 = f
+\end{align*}
+
+\subsubsection{Output}
+\begin{align*}
+\text{Output: } & y = y
+\end{align*}
+
+\subsubsection{States}
+\begin{align*}
+\text{Mass 2: } & x_1 = v_{m_2} = \dot{y} \\
+\text{Mass 1: } & x_2 = v_{m_1} \\
+\text{Spring W: } & x_3 = f_{k_w}
+\end{align*}
+
+\subsection{Canonical State Variables}
+\begin{align*}
+x^*_1 &= f_{m_2}, \quad x^*_2 = f_{m_1}, \quad x^*_3 = v_{k_w}
+\end{align*}
+
+\subsection{Topology Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = -f \\
+x^*_2 &= f_{m_1} = -f_{k_w} = -x_3 + f \\
+x^*_3 &= v_{k_w} = v_{m_1} - \dot{r} = x_2 - \dot{r}
+\end{align*}
+
+\subsection{Energy Storage Element Equations}
+\begin{align*}
+x^*_1 &= f_{m_2} = m_2 \dot{v}_{m_2} = m_2 \dot{x}_1 \Rightarrow \dot{x}_1 = \frac{1}{m_2} (x_1^*) = -\frac{1}{m_2} f \\
+x^*_2 &= f_{m_1} = m_1 \dot{v}_{m_1} = m_1 \dot{x}_2 \Rightarrow \dot{x}_2 = \frac{1}{m_1} (x_2^*) = \frac{1}{m_1} (-x_3 + f) \\
+x^*_3 &= v_{k_w} = \frac{1}{k_w} \dot{f}_{k_w} = \frac{1}{k_w} \dot{x}_3 \Rightarrow \dot{x}_3 = k_w(x^*_3) = k_w (x_2 - \dot{r})
+\end{align*}
+
+\subsection{Collect in Matrix Form}
    
+\[
+\begin{bmatrix}
+\dot{x}_1 \\
+\dot{x}_2 \\
+\dot{x}_3 
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & -\frac{1}{m_1} \\
+0 & k_w & 0  
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 
+\end{bmatrix}
++
+\begin{bmatrix}
+0 & -\frac{1}{m_2}\\
+0 & \frac{1}{m_1} \\
+-k_w & 0& 
+\end{bmatrix}
+\begin{bmatrix}
+\dot{r} \\
+f
+\end{bmatrix}
+\]
+
+\[
+y = 
+\begin{bmatrix}
+1 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 
+\end{bmatrix}
++
+\begin{bmatrix}
+0
+\end{bmatrix}
+u
+\]
+
 \section{}
 
 \textit{
