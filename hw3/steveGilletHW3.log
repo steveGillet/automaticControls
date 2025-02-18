@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  16 FEB 2025 22:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  17 FEB 2025 19:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -320,39 +320,68 @@ Package pdftex.def Info: b1000sim.png  used on input line 227.
 <b10000sim.png, id=42, 429.10312pt x 338.76563pt>
 File: b10000sim.png Graphic file (type png)
 <use b10000sim.png>
-Package pdftex.def Info: b10000sim.png  used on input line 235.
+Package pdftex.def Info: b10000sim.png  used on input line 236.
 (pdftex.def)             Requested size: 339.72592pt x 268.20601pt.
  [5 <./b100sim.png (PNG copy)> <./b1000sim.png (PNG copy)>]
-<activeSusModel.png, id=46, 509.905pt x 798.985pt>
+<b100000sim.png, id=46, 429.10312pt x 338.76563pt>
+File: b100000sim.png Graphic file (type png)
+<use b100000sim.png>
+Package pdftex.def Info: b100000sim.png  used on input line 244.
+(pdftex.def)             Requested size: 339.72592pt x 268.20601pt.
+ [6 <./b10000sim.png (PNG copy)> <./b100000sim.png (PNG copy)>]
+<activeSusModel.png, id=50, 509.905pt x 798.985pt>
 File: activeSusModel.png Graphic file (type png)
 <use activeSusModel.png>
-Package pdftex.def Info: activeSusModel.png  used on input line 264.
+Package pdftex.def Info: activeSusModel.png  used on input line 272.
 (pdftex.def)             Requested size: 226.48395pt x 354.88277pt.
- [6 <./b10000sim.png (PNG copy)>] [7 <./activeSusModel.png>]
-<actSusOnlyModel.png, id=55, 509.905pt x 798.985pt>
+ [7 <./activeSusModel.png>]
+<actSusOnlyModel.png, id=56, 509.905pt x 798.985pt>
 File: actSusOnlyModel.png Graphic file (type png)
 <use actSusOnlyModel.png>
-Package pdftex.def Info: actSusOnlyModel.png  used on input line 321.
+Package pdftex.def Info: actSusOnlyModel.png  used on input line 331.
 (pdftex.def)             Requested size: 226.48395pt x 354.88277pt.
- [8 <./actSusOnlyModel.png>] [9] (./steveGilletHW3.aux)
+ [8] [9 <./actSusOnlyModel.png>]
+<stepSusOnlySim.png, id=64, 429.10312pt x 338.76563pt>
+File: stepSusOnlySim.png Graphic file (type png)
+<use stepSusOnlySim.png>
+Package pdftex.def Info: stepSusOnlySim.png  used on input line 455.
+(pdftex.def)             Requested size: 226.48395pt x 178.80573pt.
+ [10]
+<sinSusOnlySim.png, id=68, 429.10312pt x 338.76563pt>
+File: sinSusOnlySim.png Graphic file (type png)
+<use sinSusOnlySim.png>
+Package pdftex.def Info: sinSusOnlySim.png  used on input line 462.
+(pdftex.def)             Requested size: 226.48395pt x 178.80573pt.
+<fig27.png, id=69, 752.8125pt x 396.48125pt>
+File: fig27.png Graphic file (type png)
+<use fig27.png>
+Package pdftex.def Info: fig27.png  used on input line 494.
+(pdftex.def)             Requested size: 339.72592pt x 178.92914pt.
+ [11 <./stepSusOnlySim.png (PNG copy)> <./sinSusOnlySim.png (PNG copy)>] [12 <./fig27.png>]
+<rotorSim.png, id=77, 429.10312pt x 338.76563pt>
+File: rotorSim.png Graphic file (type png)
+<use rotorSim.png>
+Package pdftex.def Info: rotorSim.png  used on input line 656.
+(pdftex.def)             Requested size: 339.72592pt x 268.20601pt.
+ [13] [14 <./rotorSim.png (PNG copy)>] (./steveGilletHW3.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7087 strings out of 474222
- 108240 string characters out of 5748732
- 1999975 words of memory out of 5000000
- 29310 multiletter control sequences out of 15000+600000
+ 7143 strings out of 474222
+ 109183 string characters out of 5748732
+ 2165975 words of memory out of 5000000
+ 29366 multiletter control sequences out of 15000+600000
  564134 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,10n,65p,749b,2274s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on steveGilletHW3.pdf (9 pages, 426614 bytes).
+Output written on steveGilletHW3.pdf (14 pages, 541868 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 68 compressed objects within 1 object stream
+ 148 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
