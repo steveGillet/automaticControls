@@ -33,7 +33,7 @@
 }
 
 \renewcommand{\thesection}{\arabic{section})}
-\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsection}{\arabic{section}.\alph{subsection})}
 
 \begin{document}
 
@@ -120,5 +120,92 @@ B = \begin{bmatrix} 0 \\ 0 \\ \frac{1}{M_2} \\ 0 \\ 0 \\ 0 \\ 0 \\ 0 \end{bmatri
 C = \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \end{bmatrix}, \quad
 D = \begin{bmatrix} 0 \end{bmatrix}
 \]
+
+\section{}
+\textit{[20 pts] A rigid spacecraft stabilized by gravity gradient in low Earth orbit has the following transfer function relating applied reaction wheel torque $\tau$ to pitch angle $\theta$ relative to the local-vertical-local-horizontal frame. $G(s) = \frac{10}{s^2 + 0.01}$ [rad/Nm] Design a unity feedback control system to cause the pitch angle $\theta$ to track a pitch angle command $\theta_r$ such that the closed loop 5\% settling time to a unit step command is less than 2 sec. Draw a block diagram and label all signals and units.}
+
+I started by using the closed loop transfer function $\frac{CG}{1+CG}$ and using a scalar value for C like a proportional gain control.
+I found that adjusting this proportional gain only shifted the poles up and down the imaginary axis so that wasn't going to give me the damping I needed to adjust the settling time.
+Then I added a derivative gain component so I started with $10+0.1s$ for the control law and then look at the denominator of the closed loop transfer function to get the roots.
+So the denominator became $1 + (10+0.1s) \frac{10}{s^2 +0.01}$ which equals $\frac{s^2+s+100.01}{s^2+0.01}$ and setting that equal to 0 and using the quadratic formula I got $-0.5 + j9.9875$ and the complex conjugate for the roots.
+
+Then I used this formula for the 5\% settling time and got 6 seconds.
+$t_s \approx \frac{-3}{-root} = 3 \frac{1}{root} = 3 \tau$
+This told me that I needed to increase the gain in some way to bring the settling time down so I increased the proportional derivative to 1 and got $-5 + j9.9875$ and $-5 - j9.9875$ for the roots and putting that into the settling time formula I got 0.6 seconds.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{q3model.png}
+\end{figure}
+
+\section{}
+
+\textit{[20 pts] The following plots show unit step responses from different dynamical systems. In each case, quantitatively estimate the locations of the system poles in the complex plane.}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{q4fig.png}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{q4plot.jpg}
+\end{figure}
+
+(a) indicates a negative exponential as it settles to the final value of the transfer function somewhat quickly but not that quick indicates somewhere around -1.
+(b) indicates a constant trajectory without any exponential or oscillatory effect which places it at the origin.
+(c) indicates a decaying exponential so the real component must be negative, the frequency and settling time are quite slow so I placed the poles near to the real and imaginary axis.
+(d) indicates a constant oscillation without growth or decay so the poles must lie on the imaginary axis, I put them out a bit further on the imaginary plane because the frequency seems a bit higher than it was for (c).
+
+\section{}
+
+\textit{[20 pts] A system with input $u$ and output $y$ is described by the following ordinary differential equation with initial conditions $y(0) = 0$, $\dot{y}(0) = 1$, $y(0) = 0$. $\ddot{y} + 12\ddot{y} + 22\dot{y} + 20y = 10u$ Assuming that the input $u(t)$ is a unit step function, use partial fractions to solve analytically for the following:}
+
+\textit{a. The zero input response $y_{ZI}(t)$.}
+
+\textit{b. The zero initial condition response $y_{ZIC}(t)$.}
+
+\textit{c. The forced response $y_F(t)$.} 
+
+\textit{d. The natural response $y_N(t)$.} \\
+
+I started by doing a LaPlace Transform on the ODE to get the transfer function.
+
+$s^3Y(s)-s^2y(0)-sy(0)-y(0)$  
++12 $s^2Y(s)-12sy(0)-12y(0)$  
++22 $sY(s)-22y(0)$ +20 $Y(s)$ = $\frac{10}{s}$  
+
+$s^3Y(s)-s+12s^2Y(s)-12+22sY(s)+20Y(s)=\frac{10}{s}$  
+
+$s^3Y(s)+12s^2Y(s)+22sY(s)+20Y(s)=s+12+\frac{10}{s}$  
+
+$Y(s)(s^3+12s^2+22s+20)=\frac{10}{s}+s+12$  
+
+$Y(s)=\frac{10/s+s+12}{s^3+12s^2+22s+20}$
+
+$=\frac{A}{s+10}$ + $\frac{B}{s+1-j}$ + $\frac{C}{s+1+j}$  \\
+
+(a) is the transfer function without the input component so the partial fraction terms are the same as above with different values for A, B, and C \\
+
+(b) does not have the initial conditions so the transfer function becomes  
+
+$Y(s)=$ $\frac{10}{s}$  
+$s^3+12s^2+22s+20$  
+
+which introduces another partial fraction term  
+
+$\frac{A}{s+10}$ + $\frac{B}{s+1-j}$ + $\frac{C}{s+1+j}$ + $\frac{D}{s}$  \\
+
+c) The forced response can be gotten from the final value theorem for step input $sY(s)$  
+
+$\lim_{s \to 0} sY(s)=s$ $\frac{10}{s(s^3+12s^2+22s+20)}$ = $\frac{10}{20}$=0.5 \\ 
+
+d) The natural response would be the partial fractions from the zero input response  
+
+$\frac{A}{s+10}$ + $\frac{B}{s+1-j}$ + $\frac{C}{s+1+j}$  
+
+So it would have some negative decaying oscillatory natural response  
+
+$Ae^{-10t}e^{-t} (B \cos(t) + C \sin(t))$
 
 \end{document}

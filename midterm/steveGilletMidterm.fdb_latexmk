@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1740376489.1805 "/home/steve0gillet/Desktop/automaticControls/midterm/steveGilletMidterm.tex" "steveGilletMidterm.pdf" "steveGilletMidterm" 1740376489.80825 0
+["pdflatex"] 1740453847.84811 "/home/steve0gillet/Desktop/automaticControls/midterm/steveGilletMidterm.tex" "steveGilletMidterm.pdf" "steveGilletMidterm" 1740453848.52436 0
   "/etc/texmf/web2c/texmf.cnf" 1730151749.91005 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve0gillet/Desktop/automaticControls/midterm/steveGilletMidterm.tex" 1740376488.97842 5829 ff841668741a38ecd7eb4215b694333f ""
+  "/home/steve0gillet/Desktop/automaticControls/midterm/steveGilletMidterm.tex" 1740453847.66047 10561 969c5e54c3f8cda5ad6b6fc356b36151 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -72,8 +72,11 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1730151778.56547 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1730151847 8213962 77fbdab6dff16db976ab03fe1fbc58d0 ""
   "q2fig.png" 1740374396.17948 115324 5087ddf2c4491b9e93c2e3857ad66177 ""
-  "steveGilletMidterm.aux" 1740376489.73942 121 2c74d985c60e46b3f053530818f2d8ad "pdflatex"
-  "steveGilletMidterm.tex" 1740376488.97842 5829 ff841668741a38ecd7eb4215b694333f ""
+  "q3model.png" 1740434218.12934 8007 41cab4c79b91df696612e965eedf15f0 ""
+  "q4fig.png" 1740436305.1417 139161 5dce3a7d71ac910a836040aadd88935d ""
+  "q4plot.jpg" 1740438187.2479 111651 c93b80fa8378a66c7c0b4a846d084f4c ""
+  "steveGilletMidterm.aux" 1740453848.45347 388 054261f734cdc2e875a810bd92aa7a05 "pdflatex"
+  "steveGilletMidterm.tex" 1740453847.66047 10561 969c5e54c3f8cda5ad6b6fc356b36151 ""
   (generated)
   "steveGilletMidterm.aux"
   "steveGilletMidterm.log"
