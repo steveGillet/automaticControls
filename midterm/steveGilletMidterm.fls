@@ -125,6 +125,11 @@ INPUT ./q4plot.jpg
 INPUT ./q4plot.jpg
 INPUT ./q4plot.jpg
 INPUT ./q4plot.jpg
+INPUT ./honorCode.jpg
+INPUT ./honorCode.jpg
+INPUT ./honorCode.jpg
+INPUT ./honorCode.jpg
+INPUT ./honorCode.jpg
 INPUT steveGilletMidterm.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
