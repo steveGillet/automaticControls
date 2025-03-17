@@ -15,3 +15,20 @@ subplot(2,1,1);
 semilogx(data(:,1), pResponse(:,1));
 subplot(2,1,2);
 semilogx(data(:,1), pResponse(:,2));
+
+K = 0.20;
+zetaZ = 0.025;
+zetaP = 0.05;
+omegaZ = 0.7323;
+omegaP = 1.32844;
+
+num = K*[1 zetaZ*omegaZ omegaZ^2];
+den = [1 zetaP*omegaP omegaP^2 0];
+pole = [2 1];
+den = conv(den, pole);
+pole = [2 1];
+den = conv(den, pole);
+estTF = tf(num,den);
+figure;
+bode(estTF);
+disp(estTF);
