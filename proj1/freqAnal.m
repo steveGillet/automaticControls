@@ -24,7 +24,7 @@ xlabel('Frequency (rad/s)'); % Label for the x-axis
 ylabel('Phase (deg)'); % Label for the second subplot
 xlim([0.5, 50]);
 
-K = 1;
+K = -1;
 % K = -0.05;
 zetaZ = 0.05;
 zetaP = 0.1;
@@ -72,7 +72,8 @@ xlim([0.5, 50]);
 [p,z] = pzmap(estTF);
 figure;
 nyquist(estTF);
-
+xlim([-6, 4]);
+ylim([-5, 5]);
 disp(p);
 disp(z);
 
@@ -93,3 +94,20 @@ ylabel('Imaginary Axis');
 title('Manual Pole-Zero Plot');
 legend('Poles', 'Zeros');
 hold off;
+
+% Convert empirical data to Nyquist plot
+realPart = K*10.^(pResponse(:,1) / 20) .* cosd(pResponse(:,2)); % Real part
+imagPart = K*10.^(pResponse(:,1) / 20) .* sind(pResponse(:,2)); % Imaginary part
+
+% Plot Nyquist plot of empirical data
+figure;
+plot(realPart, imagPart, 'b', 'LineWidth', 1.5); % Empirical data in blue
+hold on;
+plot(realPart, -imagPart, 'b--', 'LineWidth', 1.5); % Mirror for negative frequencies
+plot(-1, 0, 'rx', 'MarkerSize', 10, 'LineWidth', 2); % Red "x" at -1
+grid on;
+xlabel('Real Part');
+ylabel('Imaginary Part');
+title('Nyquist Diagram of Empirical Data');
+legend('Empirical Data', 'Mirror (Negative Frequencies)');
+axis equal;

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  1 APR 2025 01:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  1 APR 2025 23:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -301,25 +301,80 @@ File: analyticTFbode.png Graphic file (type png)
 <use analyticTFbode.png>
 Package pdftex.def Info: analyticTFbode.png  used on input line 138.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
- [3 <./flatPhaseBode.png (PNG copy)>] [4 <./analyticTFbode.png (PNG copy)>] [5] (./steveGilletProject1.aux)
+ [3 <./flatPhaseBode.png (PNG copy)>]
+<nyquistAnalytic.png, id=31, 429.10312pt x 338.76563pt>
+File: nyquistAnalytic.png Graphic file (type png)
+<use nyquistAnalytic.png>
+Package pdftex.def Info: nyquistAnalytic.png  used on input line 166.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+ [4 <./analyticTFbode.png (PNG copy)>]
+<nyquistEmpirical.png, id=35, 429.10312pt x 338.76563pt>
+File: nyquistEmpirical.png Graphic file (type png)
+<use nyquistEmpirical.png>
+Package pdftex.def Info: nyquistEmpirical.png  used on input line 172.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+<nyquistPlot.jpg, id=36, 1569.865pt x 1324.95pt>
+File: nyquistPlot.jpg Graphic file (type jpg)
+<use nyquistPlot.jpg>
+Package pdftex.def Info: nyquistPlot.jpg  used on input line 181.
+(pdftex.def)             Requested size: 362.37569pt x 305.84402pt.
+ [5 <./nyquistAnalytic.png (PNG copy)> <./nyquistEmpirical.png (PNG copy)>]
+<nyquistDiagram.jpg, id=40, 1486.55376pt x 1342.01375pt>
+File: nyquistDiagram.jpg Graphic file (type jpg)
+<use nyquistDiagram.jpg>
+Package pdftex.def Info: nyquistDiagram.jpg  used on input line 188.
+(pdftex.def)             Requested size: 362.37569pt x 327.12733pt.
+ [6 <./nyquistPlot.jpg> <./nyquistDiagram.jpg>]
+<k10nyquistDiagram.png, id=44, 429.10312pt x 338.76563pt>
+File: k10nyquistDiagram.png Graphic file (type png)
+<use k10nyquistDiagram.png>
+Package pdftex.def Info: k10nyquistDiagram.png  used on input line 200.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+<k100nyquistDiagram.png, id=45, 429.10312pt x 338.76563pt>
+File: k100nyquistDiagram.png Graphic file (type png)
+<use k100nyquistDiagram.png>
+Package pdftex.def Info: k100nyquistDiagram.png  used on input line 207.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+ [7 <./k10nyquistDiagram.png (PNG copy)>]
+File: analyticTFbode.png Graphic file (type png)
+<use analyticTFbode.png>
+Package pdftex.def Info: analyticTFbode.png  used on input line 216.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+<kNeg1nyquistDiagram.png, id=50, 429.10312pt x 338.76563pt>
+File: kNeg1nyquistDiagram.png Graphic file (type png)
+<use kNeg1nyquistDiagram.png>
+Package pdftex.def Info: kNeg1nyquistDiagram.png  used on input line 224.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+ [8 <./k100nyquistDiagram.png (PNG copy)>]
+<kNeg10nyquistDiagram.png, id=54, 429.10312pt x 338.76563pt>
+File: kNeg10nyquistDiagram.png Graphic file (type png)
+<use kNeg10nyquistDiagram.png>
+Package pdftex.def Info: kNeg10nyquistDiagram.png  used on input line 231.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+<kNeg100nyquistDiagram.png, id=55, 429.10312pt x 338.76563pt>
+File: kNeg100nyquistDiagram.png Graphic file (type png)
+<use kNeg100nyquistDiagram.png>
+Package pdftex.def Info: kNeg100nyquistDiagram.png  used on input line 238.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+ [9 <./kNeg1nyquistDiagram.png (PNG copy)> <./kNeg10nyquistDiagram.png (PNG copy)>] [10 <./kNeg100nyquistDiagram.png (PNG copy)>] (./steveGilletProject1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7045 strings out of 474222
- 107634 string characters out of 5748732
+ 7123 strings out of 474222
+ 109656 string characters out of 5748732
  2003975 words of memory out of 5000000
- 29269 multiletter control sequences out of 15000+600000
+ 29347 multiletter control sequences out of 15000+600000
  563519 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,8n,65p,665b,1776s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on steveGilletProject1.pdf (5 pages, 256037 bytes).
+Output written on steveGilletProject1.pdf (10 pages, 650111 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

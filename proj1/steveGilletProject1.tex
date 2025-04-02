@@ -145,6 +145,101 @@ Which looks pretty close and all of the important frequencies like the gain cros
 
 \textit{[20 pts] Examine the two loop transfer functions (analytic and empirical) via Bode plots and Nyquist plots using a proportional controller \(C(s) = K\). Would the control system be stable for some values of \(K\)? For all values of \(K\)?}
 
+So you can see the Bode plots above, I also plotted the Nyquist plots using the 'nyquist' function in matlab for the analytical and converted the frequency response to complex form for the empirical plot using the following conversion: 
+\[C(j\omega)G(j\omega) = K |G(j\omega)| \cos(\phi(\omega)) + j K |G(j\omega)| \sin(\phi(\omega))\]
+The Matlab code for that conversion/plotting looks like this:
+
+\begin{lstlisting}[style=matlabstyle]
+realPart = K*10.^(pResponse(:,1) / 20) .* cosd(pResponse(:,2));
+imagPart = K*10.^(pResponse(:,1) / 20) .* sind(pResponse(:,2));
+
+figure;
+plot(realPart, imagPart, 'b', 'LineWidth', 1.5);
+hold on;
+plot(realPart, -imagPart, 'b--', 'LineWidth', 1.5);
+\end{lstlisting}
+
+The results look like this:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nyquistAnalytic.png}
+    \label{fig:nyquistAnalytic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nyquistEmpirical.png}
+    \label{fig:nyquistEmpirical}
+\end{figure}
+
+Which look pretty similar which I was happy about.
+I also drew the Nyquist plot and diagram of the analytic transfer function by hand so that we could see what is going on around infinite to get an idea of the encirclements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nyquistPlot.jpg}
+    \label{fig:nyquistPlot}
+    \caption{Nyquist Plot of Analytic TF}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nyquistDiagram.jpg}
+    \label{fig:nyquistDiagram}
+    \caption{Nyquist Diagram of Analytic TF}
+\end{figure}
+
+As you can see the diagram starts out at point 1 at -90 degrees and negative infinite and then as it goes to point 2 it goes to 0 as the magnitude of the denominator takes over and the 4 poles and 2 zeros sum to -180 degrees as it does so.
+Then it goes to point 3 and the magnitude stays big but the phase flips to +90, then the magnitude grows to get to point 4 and as point 4 comes back around to point 1 the phase flips again going from positive 90 to negative 90 and you see that -180 curve around infinite in the diagram.
+This means that there are no encirclements at K = 1 and there are no unstable poles in the right half plane so the system is stable there.
+As I increase K you can see how that phase margin is shrinking but will never quite touch that stability criterion.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{k10nyquistDiagram.png}
+    \label{fig:k10nyquistDiagram}
+    \caption{K=10 Nyquist Diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{k100nyquistDiagram.png}
+    \label{fig:k100nyquistDiagram}
+    \caption{K=100 Nyquist Diagram}
+\end{figure}
+
+This corresponds to that gain crossover frequency moving down the Bode plot as the gain increases and the phase margin getting closer and closer to -180 degrees but never quite touching it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{analyticTFbode.png}
+    \label{fig:analyticTFbodePhaseMargin}
+\end{figure}
+
+However, any negative values of K will result in an encirclement of the -1 point and therefore an unstable system.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{kNeg1nyquistDiagram.png}
+    \label{fig:k-1nyquistDiagram}
+    \caption{K=-1 Nyquist Diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{kNeg10nyquistDiagram.png}
+    \label{fig:k-10nyquistDiagram}
+    \caption{K=-10 Nyquist Diagram}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{kNeg100nyquistDiagram.png}
+    \label{fig:k-100nyquistDiagram}
+    \caption{K=-100 Nyquist Diagram}
+\end{figure}
+
 \section{}
 
 \textit{[30 pts] Design a compensator \(C_1(s)\) so that the unity feedback control system with \(C(s) = K C_1(s)\) has at least 40 deg phase margin, 10 dB of gain margin, and a closed loop (-3 dB) bandwidth as close to 1 Hz as possible. Use the analytic plant model in this design. Compute and plot the closed loop tracking frequency response.}
