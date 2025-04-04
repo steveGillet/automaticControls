@@ -24,7 +24,7 @@ xlabel('Frequency (rad/s)'); % Label for the x-axis
 ylabel('Phase (deg)'); % Label for the second subplot
 xlim([0.5, 50]);
 
-K = -1;
+K = 1;
 % K = -0.05;
 zetaZ = 0.05;
 zetaP = 0.1;
@@ -111,3 +111,13 @@ ylabel('Imaginary Part');
 title('Nyquist Diagram of Empirical Data');
 legend('Empirical Data', 'Mirror (Negative Frequencies)');
 axis equal;
+
+K = 70;
+a = 0.1;
+b = 8.3;
+C1 = tf(K * [1 a], [1 b]);
+closedTF = C1*estTF;
+figure;
+margin(closedTF);
+grid on;
+title('Bode Plot with Gain and Phase Margins');
