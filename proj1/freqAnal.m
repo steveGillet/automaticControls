@@ -24,7 +24,7 @@ xlabel('Frequency (rad/s)'); % Label for the x-axis
 ylabel('Phase (deg)'); % Label for the second subplot
 xlim([0.5, 50]);
 
-K = 1;
+K = 1000;
 % K = -0.05;
 zetaZ = 0.05;
 zetaP = 0.1;

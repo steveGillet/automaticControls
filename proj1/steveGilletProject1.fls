@@ -158,6 +158,11 @@ INPUT ./analyticTFbode.png
 INPUT ./analyticTFbode.png
 INPUT ./analyticTFbode.png
 INPUT ./analyticTFbode.png
+INPUT ./empiricalK1000zoom.png
+INPUT ./empiricalK1000zoom.png
+INPUT ./empiricalK1000zoom.png
+INPUT ./empiricalK1000zoom.png
+INPUT ./empiricalK1000zoom.png
 INPUT ./kNeg1nyquistDiagram.png
 INPUT ./kNeg1nyquistDiagram.png
 INPUT ./kNeg1nyquistDiagram.png

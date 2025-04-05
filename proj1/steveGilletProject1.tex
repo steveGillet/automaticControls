@@ -217,7 +217,17 @@ This corresponds to that gain crossover frequency moving down the Bode plot as t
     \label{fig:analyticTFbodePhaseMargin}
 \end{figure}
 
-However, any negative values of K will result in an encirclement of the -1 point and therefore an unstable system.
+However, the empirical frequency response does cross over -180 degree phase a couple of times and so you would expect that there would be a high gain where you would see a nyquist diagram encirclement and therefore some instability.
+Below you can see where I set K to 1000 for the empirical transfer function and how that creates an encirclement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{empiricalK1000zoom.png}
+    \label{fig:empiricalK1000zoom}
+    \caption{K=1000 Empirical Nyquist Diagram}
+\end{figure}
+
+Also, any negative values of K will result in an encirclement of the -1 point and therefore an unstable system.
 
 \begin{figure}[H]
     \centering
