@@ -1,13 +1,15 @@
 dataTable = readtable('data.xlsx');
 data = table2array(dataTable);
 
-n = size(data,1);
+[uniqueFreq, ia] = unique(data(:,1));
+n = size(uniqueFreq,1);
 pResponse = zeros(n,3);
 
 for i = 1:n
-    pResponse(i,1) = 20*log10(data(i,2)) - 20*log10(data(i,1));
-    pResponse(i,2) = data(i,3)*180/pi - 90;
-    pResponse(i,3) = data(i,1)*2*pi;
+    idx = ia(i);
+    pResponse(i,1) = 20*log10(data(idx,2)) - 20*log10(data(i,1));
+    pResponse(i,2) = data(idx,3)*180/pi - 90;
+    pResponse(i,3) = data(idx,1)*2*pi;
 end
 
 figure;
@@ -24,7 +26,7 @@ xlabel('Frequency (rad/s)'); % Label for the x-axis
 ylabel('Phase (deg)'); % Label for the second subplot
 xlim([0.5, 50]);
 
-K = 1000;
+K = 1;
 % K = -0.05;
 zetaZ = 0.05;
 zetaP = 0.1;
@@ -112,12 +114,23 @@ title('Nyquist Diagram of Empirical Data');
 legend('Empirical Data', 'Mirror (Negative Frequencies)');
 axis equal;
 
-K = 70;
-a = 0.1;
-b = 8.3;
-C1 = tf(K * [1 a], [1 b]);
+K = 60;
+a = 1;
+b = 10;
+leadNumC = [1 a];
+leadDenC = [1 b];
+numC = [1 zetaP*omegaP omegaP^2];
+denC = [1 zetaZ*omegaZ omegaZ^2];
+numC = conv(numC, leadNumC);
+denC = conv(denC, leadDenC);
+C1 = tf(K * numC, denC);
 closedTF = C1*estTF;
 figure;
 margin(closedTF);
 grid on;
 title('Bode Plot with Gain and Phase Margins');
+
+G = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
+empiricalClosedTF = G * C1;
+figure;
+margin(empiricalClosedTF);
