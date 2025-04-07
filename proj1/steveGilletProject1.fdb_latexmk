@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1743817615.06325 "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" "steveGilletProject1.pdf" "steveGilletProject1" 1743817615.75917 0
+["pdflatex"] 1743988961.09091 "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" "steveGilletProject1.pdf" "steveGilletProject1" 1743988961.73811 0
   "/etc/texmf/web2c/texmf.cnf" 1730151749.91005 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" 1743817614.23343 12948 c2b86f52fda68eed62cdda4db9ded076 ""
+  "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" 1743988960.15053 17455 10456d68ca2dad4430565fb60eed0931 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -72,6 +72,11 @@
   "dataIntegrationDiagram.png" 1743482009.70202 23924 888052b4614b5999d85eaf838a5d53da ""
   "empiricalBodePlot.png" 1743490024.90532 20452 d51dfb4188b1bfa8d906afbb2ad88f6e ""
   "empiricalK1000zoom.png" 1743817149.64082 18631 56f9a9ae759055a548c48ef14aa11056 ""
+  "feedback.png" 1743985408.93708 21398 1ef813ae98ae6a7dd320fbe01288b1f9 ""
+  "feedbackEmpiricalCancelled.png" 1743988384.00225 18913 ab80baed91e929ebf43d5c478c595b38 ""
+  "feedbackEmpiricalSame.png" 1743986203.24891 20262 d4dcf3e8c39652501a3050b27127dd54 ""
+  "feedbackNoComp.png" 1743983654.74769 21714 c9f43d2307e42190da4ff90c27ffc243 ""
+  "feedbackOnlyK.png" 1743983945.6925 20600 fb70fd667b585554dc94f9fae03277cc ""
   "flatPhaseBode.png" 1743492556.14789 26345 7a22f466505e8b43a473e124d8f2774d ""
   "k100nyquistDiagram.png" 1743570495.78522 15472 b6da4e7e3887f7fc0e51983a826a4cd6 ""
   "k10nyquistDiagram.png" 1743570271.64771 13186 58c86fab93a97ccfc5f6125593e72e86 ""
@@ -82,8 +87,8 @@
   "nyquistDiagram.jpg" 1743569337.39203 127299 1290c5640e09c034f24bbf7d31cfa46d ""
   "nyquistEmpirical.png" 1743569645.29149 17418 be59a8fe14279483ce771c2e15b00ea7 ""
   "nyquistPlot.jpg" 1743569337.41303 158930 cd21c86e307a9a1847facea7602abdfd ""
-  "steveGilletProject1.aux" 1743817615.67944 3268 aaf5dace5f8804be9f2472f3b5c9716d "pdflatex"
-  "steveGilletProject1.tex" 1743817614.23343 12948 c2b86f52fda68eed62cdda4db9ded076 ""
+  "steveGilletProject1.aux" 1743988961.66152 4388 cd88511fb0bcd50092f94336654d1e55 "pdflatex"
+  "steveGilletProject1.tex" 1743988960.15053 17455 10456d68ca2dad4430565fb60eed0931 ""
   (generated)
   "steveGilletProject1.aux"
   "steveGilletProject1.log"

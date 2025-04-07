@@ -254,9 +254,87 @@ Also, any negative values of K will result in an encirclement of the -1 point an
 
 \textit{[30 pts] Design a compensator \(C_1(s)\) so that the unity feedback control system with \(C(s) = K C_1(s)\) has at least 40 deg phase margin, 10 dB of gain margin, and a closed loop (-3 dB) bandwidth as close to 1 Hz as possible. Use the analytic plant model in this design. Compute and plot the closed loop tracking frequency response.}
 
+I started by plotting the unity feedback with no controller (G/1+G) then decided how to compensate it to achieve the desired performance and stability.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{feedbackNoComp.png}
+    \label{fig:feedbackNoComp}
+\end{figure}
+
+I played around with just increasing the gain and adding a lead compensator at first to bump the phase up but the resonance and antiresonance are situated around the 1 Hz frequncy making it so that there are several gain crossover frequencies as you can see in the plot below where I just have K=65 and no compensator:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{feedbackOnlyK.png}
+    \label{fig:feedbackOnlyK}
+    \caption{Closed Loop Bode Plot with Gain Only}
+\end{figure}
+
+It would not be accurate to say that the middle crossover frequency is the closed loop bandwidth because the tracking dips down significantly (way below -3dB) before that point and the purpose of the closed loop bandwidth is that the tracking is good up until that point.
+It wouldn't be accurate either to say that the middle crossover frequency is where you would measure the phase margin from since the phase margin is the worst case scenario, measured from the closest frequencies phase.
+At the beginning I had unofficially decided to myself not to just try to cancel the resonance and antiresonance because that cancellation would not work out perfectly in the real plant.
+However, I played around with a bit using the empirical data and decided that the cancellation would work well enough and it would be the only way to get performance that I would be satisfied with.
+So I added a second order compensator element to the numerator and denominator of the controller with the same values at opposite points to cancel the resonance and antiresonance and then I added the gain K and lead compensator for the extra phase like so:
+
+\begin{lstlisting}[style=matlabstyle]
+K = 65;
+a = 1;
+b = 10;
+leadNumC = [1 a];
+leadDenC = [1 b];
+numC = [1 zetaP*omegaP omegaP^2];
+denC = [1 zetaZ*omegaZ omegaZ^2];
+numC = conv(numC, leadNumC);
+denC = conv(denC, leadDenC);
+C = tf(K * numC, denC);
+closedTF = C*estTF/(1 + C*estTF);    
+\end{lstlisting}
+
+The results are below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{feedback.png}
+    \label{fig:feedback}
+    \caption{Closed Loop Bode Plot Full Controller}
+\end{figure}
+
+You can see the closed loop bandwidth is around 1 Hz (6.44 rad/s), the phase margin there is 108 degrees, and the gain margin is infinite since the analytical frequency response never crosses -180 degrees.
+
 \section{}
 
 \textit{[10 pts] Repeat part 4 using the empirical plant frequency response. Adjust the control design as necessary to try to maintain the stability and performance objectives. Comment on the effects of the unmodeled dynamics at high frequency.}
+
+I applied the same controller to the empirical data using a frequency response data ('frd') Matlab object for the empirical data as below:
+
+\begin{lstlisting}[style=matlabstyle]
+G = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
+empiricalClosedTF = G * C/(1 + G * C);
+\end{lstlisting}
+
+As you can see in the plot below the controller does not work as well on the empirical data although the basic shape is maintained.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{feedbackEmpiricalSame.png}
+    \label{fig:feedbackEmpiricalSame}
+    \caption{Empirical Closed Loop Bode Plot Full Controller}
+\end{figure}
+
+The closed loop bandwidth is around 8.81 rad/s because of the not-completely-cancelled resonances, the worst case phase margin is still 68.9 degrees which meets the stability requirements, the gain margin is 9.35 dB at 39.2 rad/s which is pretty close to the requirement.
+It's hard to get the same performance with the empirical data because of the uncancelled dynamics and the high frequency unmodelled dynamics.
+You can see the unmodelled dynamics in the plot above the resonance goes all the way up almost to 0 db indicating that there is some high frequency where there is good tracking.
+You can also see how the unmodelled dynamics create phase dip at high frequencies which cross over -180 degrees which indicates that there is some high frequency where the system could be unstable.
+
+Below I show the effects of adding some compensation to cancel the high frequency resonances and you can see how that improves the gain margin a bit.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{feedbackEmpiricalCancelled.png}
+    \label{fig:feedbackEmpiricalCancelled}
+    \caption{Empirical Closed Loop Bode Plot with Cancelled Unmodelled Dynamics}
+\end{figure}
 
 \section{}
 
