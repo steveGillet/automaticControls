@@ -340,6 +340,47 @@ Below I show the effects of adding some compensation to cancel the high frequenc
 
 \textit{[20 pts] Simulate the analytic model in a unity feedback control loop in Simulink using the control design from part 4. Plot the responses to a 0.5 rad step input, and to single-sinusoid inputs at 0.5 Hz and 2.0 Hz, each with amplitude 0.5 rad. Also plot the torque input signal, along with its limiting values. Compare these responses with expectations from loop gain analysis for closed loop frequency response, DC tracking accuracy, and stability margins.}
 
+I created the model in Simulink using two continuous transfer function blocks, a step/sine generator, a sum block, and some scope blocks.
+I put the transfer function variables directly into the blocks from the workspace and you can see the model below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{simModel.png}
+    \label{fig:simModel}
+    \caption{Simulink Closed Loop Model}
+\end{figure}
+
+I plotted the torque input signal using a scope block on the output of the controller and setting the limits to +/- 10 V to represent common analog control signals.
+
+Then I ran simulations with the step input and the two different sine inputs and the results are below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{stepResponse.png}
+    \label{fig:stepResponse}
+\end{figure}
+
+Firstly from the step response you can see that the response is lightly damped and closely tracks the reference indicating good phase margin and tracking which aligns with the loop gain analysis.
+You can see the control effort below that and how it spikes up to 30 V initially and then settles.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{halfSineResponse.png}
+    \label{fig:halfSineResponse}
+\end{figure}
+
+Next on the 0.5 Hz sine response you can see how the DC tracking and phase is pretty close which you would expect for any frequency below the closed loop bandwidth (1 Hz).
+The control effort here is also the highest of the three simulations here and spikes up to +/- 50 V at one point.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{twoSineResponse.png}
+    \label{fig:twoSineResponse}
+\end{figure}
+
+Lastly in the 2 Hz sine response you can see the attenuation that you would expect for frequencies above 1 Hz and you can see the increased phase lagging effect you would expect from the frequency response analysis.
+The lack of instability in the responses also speaks to the stability margins being sufficient as expected.
+
 \section{}
 
 \textit{[20 pts – graduate credit only] Suppose the spacecraft had a model where the first resonance occurred before the anti-resonance in frequency. Sketch this Bode plot, and determine if your controller designed in Part 4 would produce a stable system. Comment on the difficulty of achieving the above closed loop stability and tracking bandwidth performance with this “non-colocated” plant.}

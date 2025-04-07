@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1743988961.09091 "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" "steveGilletProject1.pdf" "steveGilletProject1" 1743988961.73811 0
+["pdflatex"] 1744013648.36427 "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" "steveGilletProject1.pdf" "steveGilletProject1" 1744013649.03983 0
   "/etc/texmf/web2c/texmf.cnf" 1730151749.91005 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" 1743988960.15053 17455 10456d68ca2dad4430565fb60eed0931 ""
+  "/home/steve0gillet/Desktop/automaticControls/proj1/steveGilletProject1.tex" 1744013648.12702 19467 3d984cecf95c255beef20b3eb9f74df0 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -78,6 +78,7 @@
   "feedbackNoComp.png" 1743983654.74769 21714 c9f43d2307e42190da4ff90c27ffc243 ""
   "feedbackOnlyK.png" 1743983945.6925 20600 fb70fd667b585554dc94f9fae03277cc ""
   "flatPhaseBode.png" 1743492556.14789 26345 7a22f466505e8b43a473e124d8f2774d ""
+  "halfSineResponse.png" 1744012835.65977 27778 8911808703aced7e3c1f3e94ea7f8beb ""
   "k100nyquistDiagram.png" 1743570495.78522 15472 b6da4e7e3887f7fc0e51983a826a4cd6 ""
   "k10nyquistDiagram.png" 1743570271.64771 13186 58c86fab93a97ccfc5f6125593e72e86 ""
   "kNeg100nyquistDiagram.png" 1743571658.67235 14219 90ca1cbba73b61972b2128909f3c2b18 ""
@@ -87,8 +88,11 @@
   "nyquistDiagram.jpg" 1743569337.39203 127299 1290c5640e09c034f24bbf7d31cfa46d ""
   "nyquistEmpirical.png" 1743569645.29149 17418 be59a8fe14279483ce771c2e15b00ea7 ""
   "nyquistPlot.jpg" 1743569337.41303 158930 cd21c86e307a9a1847facea7602abdfd ""
-  "steveGilletProject1.aux" 1743988961.66152 4388 cd88511fb0bcd50092f94336654d1e55 "pdflatex"
-  "steveGilletProject1.tex" 1743988960.15053 17455 10456d68ca2dad4430565fb60eed0931 ""
+  "simModel.png" 1744011020.00495 37423 71267ff763a18b32744326571f52277b ""
+  "stepResponse.png" 1744011936.4995 23308 d883480e21f8ab63214a05b79d0d2706 ""
+  "steveGilletProject1.aux" 1744013648.97804 4901 5ae9a487c5ecd031538139d5c5a60efd "pdflatex"
+  "steveGilletProject1.tex" 1744013648.12702 19467 3d984cecf95c255beef20b3eb9f74df0 ""
+  "twoSineResponse.png" 1744013003.32164 27675 61b3c16d2cb23b2cc726d8b28d6e4ce6 ""
   (generated)
   "steveGilletProject1.aux"
   "steveGilletProject1.log"

@@ -114,12 +114,12 @@ title('Nyquist Diagram of Empirical Data');
 legend('Empirical Data', 'Mirror (Negative Frequencies)');
 axis equal;
 
-K = 55;
+K = 60;
 a = 1;
 b = 10;
 leadNumC = [1 a];
 leadDenC = [1 b];
-numC = [1 0.05*omegaP omegaP^2];
+numC = [1 zetaP*omegaP omegaP^2];
 denC = [1 zetaZ*omegaZ omegaZ^2];
 numC = conv(numC, leadNumC);
 denC = conv(denC, leadDenC);
@@ -130,12 +130,41 @@ margin(closedTF);
 grid on;
 title('Closed Loop Bode Plot with Phase Margin');
 
-G = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
-numHighRes = [1 0.05*38.6 38.6^2];
-denHighRes = [1 0.1*30.7 30.7^2];
-numC = conv(numC, numHighRes);
-denC = conv(denC, denHighRes);
-C = tf(K * numC, denC);
-empiricalClosedTF = G * C/(1 + G * C);
+% G = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
+% numHighRes = [1 0.05*38.6 38.6^2];
+% denHighRes = [1 0.1*30.7 30.7^2];
+% numC = conv(numC, numHighRes);
+% denC = conv(denC, denHighRes);
+% C = tf(K * numC, denC);
+% empiricalClosedTF = G * C/(1 + G * C);
+% figure;
+% margin(empiricalClosedTF);
+
+% Define colors
+sunset_orange = [1, 0.5765, 0.1608]; % RGB [255, 147, 41]
+contrasting_red = [0.7843, 0.1373, 0.1373]; % RGB [200, 35, 35]
+torque_gray = [0.3, 0.3, 0.3]; % Dark gray for torque signal
+
+% Plot step response
 figure;
-margin(empiricalClosedTF);
+subplot(2,1,1);
+plot(out.simout1.Time, out.simout1.Data, 'Color', sunset_orange, 'LineWidth', 1.5, 'DisplayName', 'Input r(t)');
+hold on;
+plot(out.simout.Time, out.simout.Data, 'Color', contrasting_red, 'LineWidth', 1.5, 'DisplayName', 'Output y(t)');
+grid on;
+xlabel('Time (s)');
+ylabel('Output (rad/s)');
+title('Sine Response (0.5 rad at 2 Hz)');
+legend('reference r(t)', 'output y(t)');
+
+% Plot torque input signal for step
+subplot(2,1,2);
+plot(out.simout2.time, out.simout2.Data, 'r', 'LineWidth', 1.5);
+hold on;
+% Add limiting values (assume ±10 V)
+yline(10, 'k--', 'Label', 'Upper Limit', 'LineWidth', 1);
+yline(-10, 'k--', 'Label', 'Lower Limit', 'LineWidth', 1);
+grid on;
+xlabel('Time (s)');
+ylabel('Torque Input Signal (V)');
+title('Torque Input Signal for 2 Hz Sine Input');
