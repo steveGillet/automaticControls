@@ -154,17 +154,53 @@ plot(out.simout.Time, out.simout.Data, 'Color', contrasting_red, 'LineWidth', 1.
 grid on;
 xlabel('Time (s)');
 ylabel('Output (rad/s)');
-title('Sine Response (0.5 rad at 2 Hz)');
+title('Step Response (0.5 rad)');
 legend('reference r(t)', 'output y(t)');
 
 % Plot torque input signal for step
 subplot(2,1,2);
 plot(out.simout2.time, out.simout2.Data, 'r', 'LineWidth', 1.5);
 hold on;
-% Add limiting values (assume ±10 V)
-yline(10, 'k--', 'Label', 'Upper Limit', 'LineWidth', 1);
-yline(-10, 'k--', 'Label', 'Lower Limit', 'LineWidth', 1);
+% Add limiting values (assume ±67 mNm)
+yline(67, 'k--', 'Label', 'Upper Limit', 'LineWidth', 1);
+yline(-67, 'k--', 'Label', 'Lower Limit', 'LineWidth', 1);
 grid on;
 xlabel('Time (s)');
-ylabel('Torque Input Signal (V)');
-title('Torque Input Signal for 2 Hz Sine Input');
+ylabel('Torque Input Signal (mNm)');
+title('Torque Input Signal for 0.5 Radian Step Input');
+
+% New Model Flipped Resonances
+K = 1;
+zetaP = 0.05;
+zetaZ = 0.1;
+omegaP = 4.60118;
+omegaZ = 8.34686;
+
+num = K*[1 zetaZ*omegaZ omegaZ^2];
+den = [1 zetaP*omegaP omegaP^2 0];
+
+pole = [1 0.65];
+den = conv(den, pole);
+
+flippedTF = tf(num,den);
+figure;
+bode(flippedTF);
+xlim([0.5, 50]);
+grid on;
+title('Bode Plot of Flipped Resonances');
+
+K = 60;
+a = 1;
+b = 10;
+leadNumC = [1 a];
+leadDenC = [1 b];
+numC = [1 zetaZ*omegaZ omegaZ^2];
+denC = [1 zetaP*omegaP omegaP^2];
+numC = conv(numC, leadNumC);
+denC = conv(denC, leadDenC);
+C = tf(K * numC, denC);
+closedTF = C*flippedTF/(1 + C*flippedTF);
+figure;
+margin(closedTF);
+grid on;
+title('Flipped Closed Loop Bode Plot with Phase Margin');

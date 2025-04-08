@@ -350,7 +350,7 @@ I put the transfer function variables directly into the blocks from the workspac
     \caption{Simulink Closed Loop Model}
 \end{figure}
 
-I plotted the torque input signal using a scope block on the output of the controller and setting the limits to +/- 10 V to represent common analog control signals.
+I plotted the torque input signal using a scope block on the output of the controller and setting the limits to +/- 67 mNm as per motor torque limit specs.
 
 Then I ran simulations with the step input and the two different sine inputs and the results are below:
 
@@ -361,7 +361,7 @@ Then I ran simulations with the step input and the two different sine inputs and
 \end{figure}
 
 Firstly from the step response you can see that the response is lightly damped and closely tracks the reference indicating good phase margin and tracking which aligns with the loop gain analysis.
-You can see the control effort below that and how it spikes up to 30 V initially and then settles.
+You can see the control effort below that and how it spikes up to 30 mNm initially and then slowly settles.
 
 \begin{figure}[H]
     \centering
@@ -370,7 +370,7 @@ You can see the control effort below that and how it spikes up to 30 V initially
 \end{figure}
 
 Next on the 0.5 Hz sine response you can see how the DC tracking and phase is pretty close which you would expect for any frequency below the closed loop bandwidth (1 Hz).
-The control effort here is also the highest of the three simulations here and spikes up to +/- 50 V at one point.
+The control effort here is also the highest of the three simulations here and spikes up to +/- 50 mNm at one point.
 
 \begin{figure}[H]
     \centering
@@ -384,5 +384,35 @@ The lack of instability in the responses also speaks to the stability margins be
 \section{}
 
 \textit{[20 pts – graduate credit only] Suppose the spacecraft had a model where the first resonance occurred before the anti-resonance in frequency. Sketch this Bode plot, and determine if your controller designed in Part 4 would produce a stable system. Comment on the difficulty of achieving the above closed loop stability and tracking bandwidth performance with this “non-colocated” plant.}
+
+So I started by plotting the same analytical transfer function with the location of the resonance and antiresonance flipped so the resonance occurs first.
+You can see immediately that flipping the order creates a big phase dip instead of the phase bump we had before which is obviously going to create stability issues, in the plot the phase dips down to -360 at the first resonance instead of staying above -180 like it was before.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{flippedResonancePlot.png}
+    \label{fig:flippedResonancePlot}
+    \caption{Bode Plot with Flipped Resonance}
+\end{figure}
+
+The system cannot be stabilized with exactly the same controller as above because the controller elements that cancelled the resonances before would amplify the opposite resonances.
+However, the same technique could be used to cancel the corresponding resonances with a similar effect except that the imperfect cancellation problem would be more of a problem in this case.
+The system overall has much more phase lagging behavior and so more of the uncancelled dynamics would be phase lagging and therefore would likely reduce your phase margin and create more concerns with stability.
+There is more likely to be some unmodelled, uncancelled dynamics that dip below -180 degrees and create an unstable system.
+It does seem that getting good tracking bandwidth performance would be easier however because as you can see in the plot above there are less points where you would get multiple gain crossover frequencies, although maybe the phase margin difficulties would make it harder to place the gain crossover frequency where you want it.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{flippedSameControllerPlot.png}
+    \label{fig:flippedSameControllerPlot}
+    \caption{Flipped Resonance Bode Plot with Same Controller}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{flippedCancelledPlot.png}
+    \label{fig:flippedCancelledPlot}
+    \caption{Flipped Resonance Bode Plot with Cancellation Controller}
+\end{figure}
 
 \end{document}
