@@ -129,6 +129,8 @@ figure;
 margin(closedTF);
 grid on;
 title('Closed Loop Bode Plot with Phase Margin');
+figure;
+pzmap(closedTF);
 
 % G = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
 % numHighRes = [1 0.05*38.6 38.6^2];
