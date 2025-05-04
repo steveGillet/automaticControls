@@ -169,7 +169,7 @@ I got the initial open loop poles using the 'eig' function on the A matrix:
 \end{bmatrix}
 \]
 
-I then decided to place the dominant poles to achieve a bandwidth of 1 Hz, so I took 6.28 and multiplied it by the damping ratio 0.707 to get well behaved damping.
+I then decided to use a similar strategy as in the first project to create some pole/zero cancellation to reduce the effects of the resonances, however this time I wanted to only partially cancel them to make sure I wouldn't create instability anywhere else so I placed the dominant poles at $-0.615 \pm 4.5997$, just to the left of the analytical transfer function zeros.
 Then I placed the other two poles at -10 and -12 so that they decayed quickly.
 I then calculated the K matrix using 'place' and the F matrix using $F = \left[ C (A + B K)^{-1} B \right]^{-1}$ to get good tracking.
 
@@ -178,25 +178,172 @@ I then calculated the K matrix using 'place' and the F matrix using $F = \left[ 
 
 disp(eig(A));
 
-desiredPoles = [-4.44 + 4.44i, -4.44 - 4.44i, -10, -12];
+desiredPoles = [-0.615 + 4.5997i, -0.615 - 4.5997i, -10, -12];
 K = place(A, B, desiredPoles);
 F = inv(C*inv(-A+B*K)*B);
 
 sysCL = ss(A-B*K, B*F, C, D);
-clf; figure(2);
+figure(2);
 bode(sysCL);
 title('Close Loop Tracking Frequency Response');
 grid on;    
 \end{lstlisting}
 
+Then I plotted the closed loop frequency response:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{clFreqResp.png}
+\label{fig:clFreqResp}
+\end{figure}
+
+The closed loop frequency response from reference input to plant input:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{r2pFreqResp.png}
+\label{fig:r2pFreqResp}
+\end{figure}
+
+The (negative) loop gain Bode and Nyquist plots:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{loopGainFreqResp.png}
+\label{fig:loopGainFreqResp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{loopGainNyquist.png}
+\label{fig:loopGainNyquist}
+\end{figure}
+
+So the stability margin here is not as good as it was in the previous project, here the phase margin is 49 and the gain margin is infinite for the loop gain.
+In the previous proect the phase margin was 108 degrees with infinite gain margin but in that case I had used a compensator to completely cancel the resonances so while the closed loop behavior would have been better, there would be instabilities elsewhere.
+
 \section{}
 \textit{[20 pts] Simulate the state variable feedback controller design in part 2 including a saturation at the plant input corresponding to $+/-67 \mathrm{mN} \cdot \mathrm{m}$ limits on the reaction wheel motor actuator. Use sinusoidal reference inputs of 0.1 and $1.0 \mathrm{~Hz}$, at amplitudes small enough to avoid actuator saturation. Also use a step input of height 0.1 rad. Show plant output and plant input responses. Compare them with the frequency responses from part 2.}
+
+I created the simulation using the Simulink extension of Matlab, I built the system using gains and integrators as you can see in the block diagram below:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{simBlock.png}
+\label{fig:simBlock}
+\end{figure}
+
+Then I simulated a step reference input of 0.1 rad and a sine reference input of 0.1 rad at 0.1 and 1 Hz and plotted the results:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{stepResp.png}
+\label{fig:stepResp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{sinRespPointOne.png}
+\label{fig:sinRespPointOne}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{sinRespOne.png}
+\label{fig:sinRespOne}
+\end{figure}
+
+You can see that the tracking is pretty close at 0.1 Hz and matches up with the 70\% amplitude and 45 degree phase lag at 1 Hz that we would expect from the closed loop frequency response calculated earlier.
 
 \section{}
 \textit{[20 pts] Design a full state observer so that state observation errors have settling times (5 percent) of $3 \mathrm{~sec}$. or less. Plot the (negative) loop gain (loop cut at plant input) for the combined observer/state estimate feedback controller, in both Bode and Nyquist formats, using both the analytic and empirical model for the plant. Comment on the stability margins of your combined observer/state feedback controller design. Redesign the observer, if necessary, to retain 40 degrees of phase margin and $10 \mathrm{~dB}$ of gain margin.}
 
+In order to design the observer, I just started by multiplying the closed loop poles by 5 as a rule of thumb and then calculated the settling time using the $t_s = \frac{3}{a}$ approximation and got about 1 second for the dominant poles which fits the requirements.
+Then I used the 'place' function to get the observer gain matrix L and created and plotted the results using the following code:
+
+\begin{lstlisting}[style=matlabstyle]
+scalingFactor = 5;
+desiredObserverPoles = [scalingFactor*-0.615 + 4.5997i, scalingFactor*-0.615 - 4.5997i, scalingFactor*-10, scalingFactor*-12];
+
+disp(desiredObserverPoles);
+
+L = place(A', C', desiredObserverPoles)';
+
+obsSys = ss(A-B*K-L*C, L, -K, 0);
+analG = ss(A, B, C, D);
+
+obsLGsys = -obsSys*analG;
+figure(9);
+margin(obsLGsys);
+title('Analytical Observer Loop Gain Bode Plot');
+grid on;
+xlim([0.5, 50]);
+
+figure(10);
+nyquist(obsLGsys);
+title('Analytical Observer Loop Gain Nyquist Plot');
+
+empG = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
+
+empObsLGsys = -obsSys*empG;
+figure(11);
+margin(empObsLGsys);
+title('Empirical Observer Loop Gain Bode Plot');
+grid on;
+xlim([0.5, 50]);
+
+figure(12);
+nyquist(empObsLGsys);
+title('Empirical Observer Loop Gain Nyquist Plot');
+\end{lstlisting}    
+
+The results are below:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{analObsResp.png}
+\label{fig:analObsResp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{empObsResp.png}
+\label{fig:empObsResp}
+\end{figure}
+
+You can see the analytical and empirical observer systems both line up pretty well and the phase and gain margin meet the requirements.
+
 \section{}
 \textit{[20 pts] Simulate the combined observer/state feedback control system, using the same reference inputs as in part 3. Comment on the effects of adding an observer in your state feedback control design.}
 
+I started by creating the observer system in Simulink, using the system before but adding an observer path and connecting K to $\hat{x}$ instead of $x$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{obsBlockDiagram.png}
+\label{fig:obsBlockDiagram}
+\end{figure}
+
+The I simulated and plotted the response to the sine and step inputs.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{obsStepResp.png}
+\label{fig:obsStepResp}
+\end{figure}
+
+\begin{figure}[H]   
+\centering
+\includegraphics[width=0.8\textwidth]{obsSinRespPointOne.png}
+\label{fig:obsSinRespPointOne}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{obsSinRespOne.png}
+\label{fig:obsSinRespOne}
+\end{figure}        
+
+You would expect the frequency response to be exactly the same as without the observer since the states are known in this case except that you would expect some initial tracking error as the observer states converge to the real states.
+This is consistent with the results.
 
 \end{document}

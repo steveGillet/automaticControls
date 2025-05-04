@@ -69,7 +69,7 @@ disp(D);
 
 disp(eig(A));
 
-desiredPoles = [-4.44 + 4.44i, -4.44 - 4.44i, -10, -12];
+desiredPoles = [-0.615 + 4.5997i, -0.615 - 4.5997i, -10, -12];
 K = place(A, B, desiredPoles);
 F = inv(C*inv(-A+B*K)*B);
 
@@ -96,3 +96,80 @@ title('Loop Gain Nyquist Plot');
 
 figure(6);
 margin(sysLG);
+
+[p,z] = pzmap(estTF);
+disp(p);
+disp(z);
+
+figure(7);
+margin(sysControl);
+disp(K);
+
+% Define sunset colors
+sunsetOrange = [1, 0.4353, 0.3804]; % For reference r
+sunsetPurple = [0.4196, 0.3569, 0.5843]; % For output y
+sunsetPink = [1, 0.4118, 0.7059]; % For control input u
+
+% Extract time and signals
+time = out.r.Time; % Time vector (seconds)
+r = out.r.Data; % Reference input r (rad)
+y = out.y.Data; % Plant output y (rad)
+u = out.u.Data; % Control input u (mN-m)
+
+% Plot 1: Reference r and Plant Output y vs. Time on the same plot
+figure(8);
+subplot(2,1,1);
+plot(time, r, 'Color', sunsetOrange, 'LineWidth', 1.5, 'DisplayName', 'Reference r(t)');
+hold on;
+plot(time, y, 'Color', sunsetPurple, 'LineWidth', 1.5, 'DisplayName', 'Output y(t)');
+hold off;
+grid on;
+title('Reference and Plant Output Response');
+xlabel('Time (s)');
+ylabel('Angular Deflection (rad)');
+legend('show');
+
+% Plot 2: Control Input u vs. Time
+subplot(2,1,2);
+plot(time, u, 'Color', sunsetPink, 'LineWidth', 1.5);
+grid on;
+title('Control Input u(t)');
+xlabel('Time (s)');
+ylabel('Torque (mN-m)');
+
+% Adjust plot layout
+sgtitle('Simulation Results for Sine Reference Input [0.1 rad at 0.1 Hz]');
+
+scalingFactor = 5;
+desiredObserverPoles = [scalingFactor*-0.615 + 4.5997i, scalingFactor*-0.615 - 4.5997i, scalingFactor*-10, scalingFactor*-12];
+
+disp(desiredObserverPoles);
+
+L = place(A', C', desiredObserverPoles)';
+
+obsSys = ss(A-B*K-L*C, L, -K, 0);
+analG = ss(A, B, C, D);
+
+obsLGsys = -obsSys*analG;
+figure(9);
+margin(obsLGsys);
+title('Analytical Observer Loop Gain Bode Plot');
+grid on;
+xlim([0.5, 50]);
+
+figure(10);
+nyquist(obsLGsys);
+title('Analytical Observer Loop Gain Nyquist Plot');
+
+empG = frd(10.^(pResponse(:,1)/20) .* exp(1j * deg2rad(pResponse(:,2))), pResponse(:,3));
+
+empObsLGsys = -obsSys*empG;
+figure(11);
+margin(empObsLGsys);
+title('Empirical Observer Loop Gain Bode Plot');
+grid on;
+xlim([0.5, 50]);
+
+figure(12);
+nyquist(empObsLGsys);
+title('Empirical Observer Loop Gain Nyquist Plot');

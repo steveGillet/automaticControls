@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  4 MAY 2025 00:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.10.28)  4 MAY 2025 17:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -286,25 +286,103 @@ File: anVemp.png Graphic file (type png)
 <use anVemp.png>
 Package pdftex.def Info: anVemp.png  used on input line 114.
 (pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
- [2 <./anVemp.png (PNG copy)>] [3{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [4] (./proj2.aux)
+ [2 <./anVemp.png (PNG copy)>]
+<clFreqResp.png, id=21, 421.575pt x 316.18124pt>
+File: clFreqResp.png Graphic file (type png)
+<use clFreqResp.png>
+Package pdftex.def Info: clFreqResp.png  used on input line 196.
+(pdftex.def)             Requested size: 362.37569pt x 271.78513pt.
+ [3{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<r2pFreqResp.png, id=29, 421.575pt x 316.18124pt>
+File: r2pFreqResp.png Graphic file (type png)
+<use r2pFreqResp.png>
+Package pdftex.def Info: r2pFreqResp.png  used on input line 204.
+(pdftex.def)             Requested size: 362.37569pt x 271.78513pt.
+<loopGainFreqResp.png, id=30, 421.575pt x 316.18124pt>
+File: loopGainFreqResp.png Graphic file (type png)
+<use loopGainFreqResp.png>
+Package pdftex.def Info: loopGainFreqResp.png  used on input line 212.
+(pdftex.def)             Requested size: 362.37569pt x 271.78513pt.
+ [4 <./clFreqResp.png (PNG copy)> <./r2pFreqResp.png (PNG copy)>]
+<loopGainNyquist.png, id=34, 421.575pt x 316.18124pt>
+File: loopGainNyquist.png Graphic file (type png)
+<use loopGainNyquist.png>
+Package pdftex.def Info: loopGainNyquist.png  used on input line 218.
+(pdftex.def)             Requested size: 362.37569pt x 271.78513pt.
+ [5 <./loopGainFreqResp.png (PNG copy)> <./loopGainNyquist.png (PNG copy)>]
+<simBlock.png, id=38, 1110.1475pt x 322.20375pt>
+File: simBlock.png Graphic file (type png)
+<use simBlock.png>
+Package pdftex.def Info: simBlock.png  used on input line 232.
+(pdftex.def)             Requested size: 362.37569pt x 105.1722pt.
+<stepResp.png, id=40, 414.04688pt x 293.59688pt>
+File: stepResp.png Graphic file (type png)
+<use stepResp.png>
+Package pdftex.def Info: stepResp.png  used on input line 240.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+<sinRespPointOne.png, id=41, 414.04688pt x 293.59688pt>
+File: sinRespPointOne.png Graphic file (type png)
+<use sinRespPointOne.png>
+Package pdftex.def Info: sinRespPointOne.png  used on input line 246.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+ [6 <./simBlock.png> <./stepResp.png (PNG copy)>]
+<sinRespOne.png, id=46, 414.04688pt x 293.59688pt>
+File: sinRespOne.png Graphic file (type png)
+<use sinRespOne.png>
+Package pdftex.def Info: sinRespOne.png  used on input line 252.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+ [7 <./sinRespPointOne.png (PNG copy)> <./sinRespOne.png (PNG copy)>]
+<analObsResp.png, id=51, 429.10312pt x 338.76563pt>
+File: analObsResp.png Graphic file (type png)
+<use analObsResp.png>
+Package pdftex.def Info: analObsResp.png  used on input line 303.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+<empObsResp.png, id=52, 429.10312pt x 338.76563pt>
+File: empObsResp.png Graphic file (type png)
+<use empObsResp.png>
+Package pdftex.def Info: empObsResp.png  used on input line 309.
+(pdftex.def)             Requested size: 362.37569pt x 286.09123pt.
+ [8 <./analObsResp.png (PNG copy)>]
+<obsBlockDiagram.png, id=56, 1437.37pt x 718.685pt>
+File: obsBlockDiagram.png Graphic file (type png)
+<use obsBlockDiagram.png>
+Package pdftex.def Info: obsBlockDiagram.png  used on input line 322.
+(pdftex.def)             Requested size: 452.9679pt x 226.48567pt.
+<obsStepResp.png, id=57, 414.04688pt x 293.59688pt>
+File: obsStepResp.png Graphic file (type png)
+<use obsStepResp.png>
+Package pdftex.def Info: obsStepResp.png  used on input line 330.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+ [9 <./empObsResp.png (PNG copy)> <./obsBlockDiagram.png>]
+<obsSinRespPointOne.png, id=62, 414.04688pt x 293.59688pt>
+File: obsSinRespPointOne.png Graphic file (type png)
+<use obsSinRespPointOne.png>
+Package pdftex.def Info: obsSinRespPointOne.png  used on input line 336.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+<obsSinRespOne.png, id=63, 414.04688pt x 293.59688pt>
+File: obsSinRespOne.png Graphic file (type png)
+<use obsSinRespOne.png>
+Package pdftex.def Info: obsSinRespOne.png  used on input line 342.
+(pdftex.def)             Requested size: 362.37569pt x 256.96382pt.
+ [10 <./obsStepResp.png (PNG copy)> <./obsSinRespPointOne.png (PNG copy)>] [11 <./obsSinRespOne.png (PNG copy)>] (./proj2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7050 strings out of 474222
- 107082 string characters out of 5748732
+ 7175 strings out of 474222
+ 109755 string characters out of 5748732
  2216975 words of memory out of 5000000
- 29271 multiletter control sequences out of 15000+600000
+ 29396 multiletter control sequences out of 15000+600000
  564162 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,7n,65p,717b,2278s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on proj2.pdf (4 pages, 209453 bytes).
+Output written on proj2.pdf (11 pages, 548225 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 134 PDF objects out of 1000 (max. 8388607)
+ 73 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)
 
